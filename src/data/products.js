@@ -2,7 +2,7 @@ const products = [
     {
         id: 1,
         name: "PRIME EDITION",
-        category: "Sudaderas",
+        category: "Playeras",
         description: "Sudadera con gorro sin cierre, la primera edicion, cuenta con tela suave y afelpada interna (50%) para comodidad, a pesar que es color negra  lograr todo lo que deseas, mantiene el cuerpo fresco y comoda sin importar el clima.  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado en la espalda, parte inferior derecha. estampado- inspirado classic.",
         code: "ab1201-326",
         color: "negro",
@@ -17,7 +17,7 @@ const products = [
     {
         id: 2,
         name: "RAMON DINO",
-        category: "Sudaderas",
+        category: "Playeras",
         description: "Sudadera con gorro sin cierre, El tejido de alta densidad se siente supersuave por dentro, aunque no es muy afelpado, pero su tecnologia logra mantenerte fresco mientras este en uso para clima caluroso o en un lugar frio, el ajuste cómodo y relajado te hará lograr todo lo que deseas,  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado perfecto en la parte trasera para mantener tu motivacion a donde vayas, asciendo notar tus espectativas y metas claras.",
         code: "AT9704-152",
         color: "NEGRO / GASPE",
