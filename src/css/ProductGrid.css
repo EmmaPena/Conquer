@@ -1,0 +1,10 @@
+/* scr/css/ProductGrid.css*/
+.product-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+}

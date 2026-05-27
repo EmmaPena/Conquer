@@ -1,0 +1,101 @@
+.hero-section {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+
+    view-timeline-name: --scroll;
+    view-timeline-axis: block;
+}
+
+.hero-section h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+
+    animation: fade-out both linear;
+    animation-timeline: --scroll;
+    animation-range: exit 0% exit 80%;
+}
+
+.hero-section h1 span:last-child {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 10vw, 9rem);
+    /* ⬅ ajuste */
+    line-height: 1;
+
+    animation:
+        prod-scale-out both ease-out,
+        prod-fade-out both linear;
+    animation-timeline: --scroll;
+    animation-range:
+        exit 10% exit 80%,
+        exit 10% exit 80%,
+        exit 0% exit 100%;
+}
+
+.brand {
+    position: relative;
+    display: inline-block;
+}
+
+.brand .r {
+    position: relative;
+    z-index: 1;
+}
+
+.brand-logo {
+    position: absolute;
+    height: 2.2em;
+    right: -1.6em;
+    top: -1.3em;
+    z-index: 3;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 span:last-child {
+        font-size: clamp(2.5rem, 14vw, 5rem);
+    }
+
+    .brand-logo {
+        height: 1.8em;
+        right: -1.2em;
+        top: -1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 0 1rem;
+    }
+
+    .hero-section h1 span:last-child {
+        font-size: clamp(2.2rem, 16vw, 4rem);
+    }
+
+    .brand-logo {
+        height: 1.5em;
+        right: -1em;
+        top: -0.9em;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes prod-scale-out {
+    to {
+        scale: 1.3;
+    }
+}
+
+@keyframes prod-fade-out {
+    to {
+        opacity: 0;
+    }
+}
