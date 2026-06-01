@@ -7,7 +7,6 @@ export default function ProductsPage({
 }) {
     return (
         <main className="products-page">
-
             <h1 className="page-title">
                 {title}
             </h1>
@@ -20,7 +19,6 @@ export default function ProductsPage({
                     />
                 ))}
             </section>
-
         </main>
     );
 }

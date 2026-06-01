@@ -1,15 +1,10 @@
 .promo-banner {
     max-width: 1400px;
-
     margin: 0 auto;
-
     padding: 8rem 2rem;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
-
     gap: 4rem;
-
     align-items: center;
 }
 
@@ -26,33 +21,23 @@
 
 .promo-content h2 {
     font-size: clamp(2rem, 5vw, 4rem);
-
     line-height: 1.1;
-
     margin: 0;
-
     letter-spacing: 0.1em;
 }
 
 .promo-content p {
     max-width: 500px;
-
     line-height: 1.8;
-
     opacity: 0.8;
 }
 
 .promo-content button {
     width: fit-content;
-
     padding: 1rem 2rem;
-
     border: 1px solid rgb(19, 19, 12);
-
     background: transparent;
-
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
@@ -65,7 +50,6 @@
 
     .promo-banner {
         grid-template-columns: 1fr;
-
         padding: 5rem 1rem;
     }
 

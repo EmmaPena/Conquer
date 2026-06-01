@@ -2,7 +2,6 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 4rem 2rem;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
@@ -27,7 +26,6 @@
 .thumbnail {
     width: 90px;
     cursor: pointer;
-
     transition: transform 0.3s ease;
 }
 
@@ -43,7 +41,6 @@
 .product-content h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-
     font-family: "Cinzel", serif;
 }
 
@@ -55,7 +52,6 @@
 .description {
     line-height: 1.8;
     margin-bottom: 3rem;
-
     text-align: justify;
 }
 
@@ -72,23 +68,17 @@
 
 .product-colors span {
     display: inline-block;
-
     margin-right: 1rem;
     padding: 0.5rem 1rem;
-
     border: 1px solid rgb(19, 19, 12);
 }
 
 .product-sizes button {
     margin-right: 0.7rem;
-
     padding: 0.7rem 1.2rem;
-
     background: transparent;
     border: 1px solid rgb(19, 19, 12);
-
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
@@ -99,19 +89,13 @@
 
 .add-cart-btn {
     margin-top: 2rem;
-
     padding: 1rem;
-
     border: none;
-
     background: rgb(19, 19, 12);
     color: rgb(213, 200, 183);
-
     cursor: pointer;
-
     font-size: 0.9rem;
     letter-spacing: 0.2em;
-
     transition: opacity 0.3s ease;
 }
 
