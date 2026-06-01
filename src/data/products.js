@@ -1,8 +1,25 @@
 const products = [
-    {
+    /*{
+    id: 1,
+    name: "PRIME EDITION",
+    category: "Playeras",
+    collection: "Hombre",
+    featured: true,
+    isNew: true,
+    price: 599,
+    color: "NEGRO",
+    code: "AB1201-326",
+    description: "Sudadera con gorro sin cierre, la primera edicion, cuenta con tela suave y afelpada interna (50%) para comodidad, a pesar que es color negra  lograr todo lo que deseas, mantiene el cuerpo fresco y comoda sin importar el clima.  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado en la espalda, parte inferior derecha. estampado- inspirado classic.",
+    images: [
+            "/images/prime/prime_1.jpg",
+            "/images/prime/prime_2.jpg",
+            "/images/prime/prime_3.jpg"
+        ]
+}*/
+    /*{
         id: 1,
         name: "PRIME EDITION",
-        category: "Playeras",
+        category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, la primera edicion, cuenta con tela suave y afelpada interna (50%) para comodidad, a pesar que es color negra  lograr todo lo que deseas, mantiene el cuerpo fresco y comoda sin importar el clima.  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado en la espalda, parte inferior derecha. estampado- inspirado classic.",
         code: "ab1201-326",
         color: "negro",
@@ -14,10 +31,11 @@ const products = [
         ]
     },
 
+
     {
         id: 2,
         name: "RAMON DINO",
-        category: "Playeras",
+        category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, El tejido de alta densidad se siente supersuave por dentro, aunque no es muy afelpado, pero su tecnologia logra mantenerte fresco mientras este en uso para clima caluroso o en un lugar frio, el ajuste cómodo y relajado te hará lograr todo lo que deseas,  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado perfecto en la parte trasera para mantener tu motivacion a donde vayas, asciendo notar tus espectativas y metas claras.",
         code: "AT9704-152",
         color: "NEGRO / GASPE",
@@ -44,9 +62,9 @@ const products = [
         ]
     },
     {
-        id: 0,
+        id: 4,
         name: "MR. OLYMPIA",
-        category: "Playeras",
+        category: "Sudaderas",
         description: "",
         code: "",
         color: "",
@@ -57,23 +75,10 @@ const products = [
         ]
     },
 
-    /*{
-        id: 4,
-        name: "",
-        category: "Sudaderas",
-        description: "",
-        code: "",
-        color: "",
-        price: "$599",
-        images: [
-            "/images/",
-        ]
-    },*/
-
     {
-        id: 4,
+        id: 5,
         name: "ED-CORNEY",
-        category: "Playeras",
+        category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, El tejido de alta densidad y suave por dentro, permite que el exterior no afecte, su TECNOLOGÍA logra mantenerte fresco mientras ESTÉ en uso. corte oversized, Cuello con capucha ajustable y manga larga, Bolsillo frontal tipo canguro, cuenta con bordado de la marca  en la parte frontal. Estampado- inspirado classic en la espalda.",
         code: "at6ed3-170",
         color: "gris / gaspe",
@@ -86,7 +91,7 @@ const products = [
     },
 
     {
-        id: 5,
+        id: 6,
         name: "SAMIR",
         category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, El tejido de alta densidad suave por dentro, aunque no es muy afelpado, pero su tecnologia logra mantenerte fresco mientras este en uso. corte oversized, Cuello con capucha ajustable y manga larga, estampado de la partde trasera, Bolsillo frontal tipo canguro, cuenta con bordado de la marca  en la parte frontal.",
@@ -101,7 +106,7 @@ const products = [
     },
 
     {
-        id: 6,
+        id: 7,
         name: "CENTAURO",
         category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, El tejido de alta densidad suave por dentro, aunque no es muy afelpado, pero su tecnologia logra mantenerte fresco mientras este en uso para clima caluroso o en un lugar frio, el ajuste cómodo y relajado corte oversized exacto, Cuello con capucha ajustable y manga larga, estampado cerca del ANTEBRAZO, Bolsillo frontal tipo canguro, cuenta con una frase  bordada en la espalda de color verde BOSQUE y negro. la parte frontal vino.",
@@ -116,7 +121,7 @@ const products = [
     },
 
     {
-        id: 7,
+        id: 8,
         name: "MIKE MENTZER ",
         category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, Conoce a tu nueva sudadera con gorro favorita. El tejido Fleece de alta densidad se siente supersuave por dentro pero su tecnologia logra mantenerte fresco mientras este en uso para clima caluroso o en un lugar frio, el ajuste cómodo y relajado te hará lograr todo lo que deseas,  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente y exclusivo en manga de la linea.  estampado- inspirado classic en la espalda.",
@@ -131,7 +136,7 @@ const products = [
     },
 
     {
-        id: 8,
+        id: 9,
         name: "CHRIS BUMSTEAD",
         category: "Sudaderas",
         description: "Sudadera con gorro sin cierre, Está confeccionada con un suave tejido Fleece que es terso en la parte exterior y tiene una sensación de suavidad en el interior para brindar calidez y comodidad, logra mantenerte fresco mientras este en uso para clima caluroso o en un lugar frio, el ajuste cómodo y relajado te hará lograr todo lo que deseas con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado frontal y exclusivo en manga de la linea. corte oversized. \n estampado- inspirado classic en la espalda.",
@@ -143,7 +148,62 @@ const products = [
             "/images/cbum/cbum_2.jpg",
             "/images/cbum/cbum_3.jpg"
         ]
-    },
+    },*/
+
+    {
+    id: 10,
+    name: "PRIME EDITION",
+    category: "Sudaderas",
+    collection: ["Hombre","Mujer"],
+    featured: true,
+    isNew: true,
+    description: "Sudadera con gorro sin cierre, la primera edicion, cuenta con tela suave y afelpada interna (50%) para comodidad, a pesar que es color negra  lograr todo lo que deseas, mantiene el cuerpo fresco y comoda sin importar el clima.  corte oversized exacto, Cuello con capucha ajustable y manga larga. Bolsillo frontal tipo canguro, cuenta con un bordado enfrente de la marca y estampado en la espalda, parte inferior derecha. estampado- inspirado classic.",
+    code: "AB1201-326",
+    colors: ["NEGRO","BLANCO"],
+    sizes: ["S","M","L","XL"],
+    price: 599,
+    images: [
+        "/images/prime/prime_1.jpg",
+        "/images/prime/prime_2.jpg",
+        "/images/prime/prime_3.jpg"
+    ]
+    }, 
+
+    {
+    id: 12,
+    name: "Short Sleeve Thragg",
+    category: "Sudaderas",
+    collection: ["Hombre"],
+    featured: true,
+    isNew: true,
+    description: "",
+    code: "AB1201-326",
+    colors: [],
+    sizes: ["S","M","L","XL"],
+    price: 680,
+    images: [
+        "/images/Playeras/Thragg/Corta/Frente.webp",
+        "/images/Playeras/Thragg/Corta/tras.webp",
+    ]
+    }, 
+
+    {
+    id: 13,
+    name: "Long-Sleeve-Thragg",
+    category: "Sudaderas",
+    collection: ["Hombre","Mujer"],
+    featured: true,
+    isNew: true,
+    description:"",
+    code: "AB1201-326",
+    colors: ["NEGRO","BLANCO"],
+    sizes: ["S","M","L","XL"],
+    price: 599,
+    images: [
+        "/images/Playeras/Thragg/Larga/Frente_1.webp",
+        "/images/Playeras/Thragg/Larga/Tras_1.webp",
+    ]
+    }, 
 
 
 ];

@@ -1,0 +1,42 @@
+.about-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10rem 2rem;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    opacity: 0.6;
+}
+
+.about-container h2 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    max-width: 700px;
+}
+
+.about-container p {
+    max-width: 700px;
+    line-height: 1.9;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+
+    .about-section {
+        padding: 6rem 1.5rem;
+    }
+
+    .about-container h2 {
+        font-size: 2.5rem;
+    }
+
+}

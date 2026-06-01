@@ -2,17 +2,13 @@
     position: sticky;
     top: 0;
     z-index: 10;
-
     display: flex;
     justify-content: center;
     gap: 3rem;
-
     padding: 1.5rem 0;
     margin: 0 0 6rem;
-
     background: rgb(213, 200, 183);
     backdrop-filter: blur(6px);
-
     transition: box-shadow 0.3s ease;
 }
 
@@ -23,17 +19,13 @@
 
 .category-nav button {
     position: relative;
-
     background: none;
     border: none;
-
     font-size: 0.8rem;
     letter-spacing: 0.3em;
     cursor: pointer;
-
     opacity: 0.4;
     padding: 0.5rem 0;
-
     transition:
         opacity 0.3s ease,
         transform 0.3s ease;
@@ -56,10 +48,8 @@
     position: absolute;
     left: 0;
     bottom: -6px;
-
     width: 100%;
     height: 1px;
-
     background: rgb(19, 19, 12);
     transform: scaleX(0);
     transform-origin: center;
@@ -81,21 +71,16 @@
     .category-nav {
         position: sticky;
         top: 0;
-
         display: flex;
         align-items: center;
-
         height: 56px;
         /* 👈 CLAVE */
         padding: 0 1rem;
         margin-bottom: 4rem;
-
         gap: 1.5rem;
-
         justify-content: flex-start;
         overflow-x: auto;
         overflow-y: hidden;
-
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
     }

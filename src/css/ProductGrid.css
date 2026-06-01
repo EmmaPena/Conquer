@@ -8,3 +8,22 @@
     flex-direction: column;
     gap: 6rem;
 }
+
+
+.products-page {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 10rem 2rem 5rem;
+}
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 5rem;
+
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    letter-spacing: 0.2em;
+}

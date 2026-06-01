@@ -1,0 +1,76 @@
+.promo-banner {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 8rem 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 4rem;
+
+    align-items: center;
+}
+
+.promo-image img {
+    width: 100%;
+    display: block;
+}
+
+.promo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.promo-content h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    line-height: 1.1;
+
+    margin: 0;
+
+    letter-spacing: 0.1em;
+}
+
+.promo-content p {
+    max-width: 500px;
+
+    line-height: 1.8;
+
+    opacity: 0.8;
+}
+
+.promo-content button {
+    width: fit-content;
+
+    padding: 1rem 2rem;
+
+    border: 1px solid rgb(19, 19, 12);
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.promo-content button:hover {
+    background: rgb(19, 19, 12);
+    color: white;
+}
+
+@media (max-width: 900px) {
+
+    .promo-banner {
+        grid-template-columns: 1fr;
+
+        padding: 5rem 1rem;
+    }
+
+    .promo-content {
+        text-align: center;
+        align-items: center;
+    }
+}

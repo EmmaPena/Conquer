@@ -1,5 +1,17 @@
+import products from "../data/products";
+import ProductsPage from "../components/ProductsPage";
+
 export default function Women() {
+
+    const womenProducts = products.filter(
+        (product) =>
+            product.collection?.includes("Mujer")
+    );
+
     return (
-        <h1>MUJER</h1>
+        <ProductsPage
+            title="MUJER"
+            products={womenProducts}
+        />
     );
 }

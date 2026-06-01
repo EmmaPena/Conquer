@@ -2,13 +2,10 @@
     position: sticky;
     bottom: 0;
     z-index: 10;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 56px;
-
     background: rgb(213, 200, 183);
     backdrop-filter: blur(6px);
 }
@@ -17,24 +14,19 @@
 .ig-button {
     background: transparent;
     position: relative;
-
     padding: 5px 15px;
     display: flex;
     align-items: center;
-
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.25em;
-
     cursor: pointer;
     border: 1px solid rgb(255, 0, 0);
     border-radius: 25px;
     outline: none;
     overflow: hidden;
-
     color: rgb(255, 0, 0);
     text-decoration: none;
-
     transition: color 0.3s 0.1s ease-out;
 }
 
@@ -49,14 +41,11 @@
     right: 0;
     bottom: 0;
     margin: auto;
-
     content: '';
     border-radius: 50%;
     display: block;
-
     width: 20em;
     height: 20em;
-
     transition: box-shadow 0.5s ease-out;
     z-index: -1;
 }

@@ -12,7 +12,6 @@ export default function CategoryNav({ active, onChange }) {
                     className={active === cat ? "active" : ""}
                     onClick={() => onChange(cat)}
                 >
-
                     {cat}
                 </button>
             ))}

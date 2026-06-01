@@ -1,0 +1,29 @@
+.new-arrivals {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+.new-arrivals-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.new-arrivals-header h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.25em;
+}
+
+.new-arrivals-header p {
+    margin-top: 1rem;
+    opacity: 0.7;
+    max-width: 500px;
+    margin-inline: auto;
+}
+
+.new-arrivals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+}
