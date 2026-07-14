@@ -6,7 +6,6 @@ import "../css/ProductGrid.css";
 
 export default function ProductGrid() {
     const [category, setCategory] = useState("Todos");
-
     const filteredProducts =
         category === "Todos"
             ? products
@@ -15,7 +14,6 @@ export default function ProductGrid() {
     return (
         <section className="product-grid">
             <CategoryNav active={category} onChange={setCategory} />
-
             {filteredProducts.map((product) => (
                 <ProductCard
                     key={product.id}

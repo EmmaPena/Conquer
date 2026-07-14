@@ -9,6 +9,8 @@ import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import ProductDetail from "../pages/ProductDetail";
 import Cart from "../pages/Cart";
+import SearchResults from "../pages/SearchResults";
+
 
 export default function AppRouter() {
     return (
@@ -19,10 +21,11 @@ export default function AppRouter() {
                     <Route path="/hoodies" element={<Hoodies />} />
                     <Route path="/men" element={<Men />} />
                     <Route path="/women" element={<Women />} />
-                    <Route path="/gym" element={<Gym />} />
+                    <Route path="/gym" element={<Gym />} />{/*hkhbb */}
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/search" element={<SearchResults />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>

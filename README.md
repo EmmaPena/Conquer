@@ -2,28 +2,28 @@
 
 Sitio web desarrollado con React + Vite para la marca de ropa **CONQUER**.
 
-El objetivo principal es crear una experiencia moderna para mostrar colecciones de ropa deportiva, sudaderas, playeras y prendas de entrenamiento, manteniendo una identidad visual enfocada en disciplina, rendimiento y estilo de vida fitness.
+El objetivo del proyecto es crear una experiencia moderna para mostrar y comercializar prendas deportivas, sudaderas, playeras y ropa fitness mediante una interfaz minimalista y pedidos directos por WhatsApp.
 
 ---
 
 # Tecnologías Utilizadas
 
-- React
-- Vite
-- React Router DOM
-- JavaScript (ES6+)
-- CSS3
+* React
+* Vite
+* React Router DOM
+* Context API
+* JavaScript (ES6+)
+* CSS3
 
 ---
 
 # Arquitectura del Proyecto
 
-El proyecto sigue una arquitectura modular basada en componentes reutilizables.
-
 ```txt
 src/
 │
 ├── components/
+├── context/
 ├── css/
 ├── data/
 ├── layouts/
@@ -41,40 +41,42 @@ src/
 
 Actualmente el proyecto cuenta con:
 
-- Navegación SPA mediante React Router.
-- Layout principal reutilizable.
-- Página Home.
-- Catálogos por categoría.
-- Página de detalle de producto.
-- Página de contacto.
-- Página 404 personalizada.
-- Footer global.
-- Diseño responsive.
+* Navegación SPA.
+* Layout principal.
+* Página Home.
+* Catálogos por categoría.
+* Página de detalle de producto.
+* Carrito global.
+* Pedido mediante WhatsApp.
+* Página de contacto.
+* Página 404.
+* Diseño responsive.
 
 ---
 
 # Sistema de Navegación
 
-Se utiliza React Router para manejar la navegación entre pantallas.
+React Router es utilizado para gestionar toda la navegación del sitio.
 
-## Rutas disponibles
+## Rutas
 
-| Ruta         | Descripción           |
-| ------------ | --------------------- |
-| /            | Inicio                |
-| /hoodies     | Catálogo de sudaderas |
-| /men         | Colección hombre      |
-| /women       | Colección mujer       |
-| /gym         | Ropa deportiva        |
-| /contact     | Contacto              |
-| /product/:id | Detalle de producto   |
-| /*          | Página 404            |
+| Ruta         | Descripción         |
+| ------------ | ------------------- |
+| /            | Inicio              |
+| /hoodies     | Sudaderas           |
+| /men         | Hombre              |
+| /women       | Mujer               |
+| /gym         | Gym                 |
+| /contact     | Contacto            |
+| /cart        | Carrito             |
+| /product/:id | Detalle de producto |
+| *            | Página 404          |
 
 ---
 
 # Home Page
 
-La página principal está compuesta por las siguientes secciones:
+## Estructura
 
 ```txt
 Navbar
@@ -98,386 +100,318 @@ Footer
 
 Características:
 
-- Pantalla completa (fullscreen).
-- Soporte para video de fondo.
-- Overlay con contenido promocional.
-- Diseño responsive.
-- Preparado para animaciones futuras.
+* Fullscreen.
+* Preparado para video.
+* Responsive.
+* Overlay promocional.
 
 ---
 
 ## Novedades
 
-Muestra los productos marcados como nuevos.
-
 Características:
 
-- Datos obtenidos desde products.js.
-- Renderizado dinámico.
-- Componentes reutilizables.
-- Preparado para evolucionar a carrusel.
+* Productos nuevos.
+* Renderizado dinámico.
+* Uso de ProductCard.
+* Preparado para carrusel.
 
 ---
 
 ## Promo Banner
 
-Sección promocional utilizada para campañas y lanzamientos.
-
 Características:
 
-- Imagen destacada.
-- Texto promocional.
-- Botón CTA.
-- Diseño responsive.
+* Imagen promocional.
+* Texto destacado.
+* CTA.
+* Responsive.
 
 ---
 
 ## Colecciones
 
-Permite navegar rápidamente entre categorías principales.
+Categorías:
 
-Categorías actuales:
-
-- Sudaderas
-- Hombre
-- Mujer
-- Gym
+* Sudaderas
+* Hombre
+* Mujer
+* Gym
 
 Características:
 
-- Tarjetas visuales.
-- Navegación mediante React Router.
-- Hover con efecto zoom.
-- Responsive.
+* Navegación mediante React Router.
+* Hover visual.
+* Responsive.
 
 ---
 
 ## About Section
 
-Sección institucional de la marca.
-
 Características:
 
-- Filosofía de CONQUER.
-- Misión.
-- Identidad visual.
-- Diseño minimalista.
+* Filosofía de la marca.
+* Misión.
+* Identidad visual.
+* Diseño minimalista.
 
 ---
 
-# Catálogo de Productos
+# Catálogo
 
-Se implementó un sistema reutilizable para mostrar productos según filtros y categorías.
+Sistema reutilizable para mostrar productos.
 
-Componentes involucrados:
+## Componentes
 
-- ProductsPage.jsx
-- ProductCard.jsx
+* ProductsPage.jsx
+* ProductCard.jsx
 
-Características:
+## Características
 
-- Reutilizable.
-- Escalable.
-- Sin duplicación de código.
-- Filtrado dinámico.
-
----
-
-# Página de Producto
-
-Cada producto cuenta con una página independiente.
-
-Ruta:
-
-```txt
-/product/:id
-```
-
-Actualmente muestra:
-
-- Nombre.
-- Imagen principal.
-- Descripción.
-- Precio.
-
-Preparada para futuras mejoras:
-
-- Galería de imágenes.
-- Selector de talla.
-- Selector de color.
-- Productos relacionados.
-- Agregar al carrito.
+* Reutilizable.
+* Escalable.
+* Filtrado dinámico.
+* Responsive.
 
 ---
 
 # Modelo de Producto
 
-Todos los productos se almacenan en:
+Archivo:
 
 ```txt
 src/data/products.js
 ```
 
-Estructura actual:
+## Estructura
 
 ```js
 {
   id: 10,
   name: "PRIME EDITION",
   category: "Sudaderas",
-  collection: ["Hombre","Mujer"],
+  collection: ["Hombre", "Mujer"],
   featured: true,
   isNew: true,
   description: "",
   code: "AB1201-326",
-  colors: ["NEGRO","BLANCO"],
-  sizes: ["S","M","L","XL"],
+  colors: ["NEGRO", "BLANCO"],
+  sizes: ["S", "M", "L", "XL"],
   price: 599,
-  images: [
-    "/images/prime/prime_1.jpg",
-    "/images/prime/prime_2.jpg",
-    "/images/prime/prime_3.jpg"
-  ]
+  images: []
 }
 ```
 
----
-
 ## Campos
 
-| Campo       | Descripción           |
-| ----------- | --------------------- |
-| id          | Identificador único   |
-| name        | Nombre del producto   |
-| category    | Categoría principal   |
-| collection  | Colecciones asociadas |
-| featured    | Producto destacado    |
-| isNew       | Producto nuevo        |
-| description | Descripción           |
-| code        | Código interno        |
-| colors      | Colores disponibles   |
-| sizes       | Tallas disponibles    |
-| price       | Precio                |
-| images      | Galería de imágenes   |
+| Campo       | Descripción         |
+| ----------- | ------------------- |
+| id          | Identificador único |
+| name        | Nombre              |
+| category    | Categoría principal |
+| collection  | Colecciones         |
+| featured    | Destacado           |
+| isNew       | Nuevo               |
+| description | Descripción         |
+| code        | Código              |
+| colors      | Colores             |
+| sizes       | Tallas              |
+| price       | Precio              |
+| images      | Imágenes            |
 
 ---
 
 ## Collection
 
-El campo collection utiliza un arreglo para permitir productos unisex.
+Permite productos unisex.
 
 Ejemplos:
 
 ```js
-collection: ["Hombre"];
-collection: ["Mujer"];
-collection: ["Hombre", "Mujer"];
-```
+collection: ["Hombre"]
 
-Esto evita duplicar productos dentro del catálogo.
+collection: ["Mujer"]
+
+collection: ["Hombre", "Mujer"]
+```
 
 ---
 
-# Componentes Actuales
+# Página de Producto
+
+Ruta:
+
+```txt
+/product/:id
+```
+
+## Componentes
+
+* ProductDetail.jsx
+* ProductDetail.css
+
+## Características
+
+* Galería de imágenes.
+* Imagen principal dinámica.
+* Selector de colores.
+* Selector de tallas.
+* Vista previa de selección.
+* Información completa del producto.
+* Responsive.
+* Integración con carrito.
+
+---
+
+# Sistema de Carrito
+
+Implementado mediante Context API.
+
+## Archivos
+
+* CartContext.jsx
+* Cart.jsx
+* CartItem.jsx
+
+---
+
+## Funcionalidades
+
+### Agregar productos
+
+* Guarda producto.
+* Guarda color.
+* Guarda talla.
+
+### Gestión de cantidades
+
+* Incrementar cantidad.
+* Disminuir cantidad.
+* Eliminar producto.
+
+### Lógica de carrito
+
+* Evita duplicados.
+* Actualiza cantidades automáticamente.
+* Calcula total automáticamente.
+
+---
+
+## Flujo
+
+```txt
+Producto
+↓
+Agregar al carrito
+↓
+Carrito
+↓
+Resumen
+↓
+WhatsApp
+```
+
+---
+
+# Pedido por WhatsApp
+
+La tienda utiliza WhatsApp como método principal de compra.
+
+## Características
+
+* Generación automática de mensaje.
+* Productos seleccionados.
+* Tallas.
+* Colores.
+* Cantidades.
+* Total calculado.
+* Apertura automática mediante wa.me.
+
+---
+
+# Componentes Globales
 
 ## Navbar
 
-Responsable de la navegación principal.
+Funciones actuales:
 
-Funciones futuras:
+* Navegación principal.
 
-- Buscador.
-- Favoritos.
-- Carrito.
+Preparado para:
 
----
-
-## ProductCard
-
-Tarjeta reutilizable para mostrar productos.
-
-Características:
-
-- Imagen principal.
-- Información resumida.
-- Navegación al detalle.
-- Diseño responsive.
+* Buscador.
+* Favoritos.
+* Indicador visual de carrito.
 
 ---
 
 ## Footer
 
-Componente global persistente.
+Funciones actuales:
 
-Actualmente incluye:
-
-- Enlace a Instagram.
-- Información de marca.
-- Derechos reservados.
+* Instagram.
+* Información de marca.
+* Copyright.
 
 ---
 
-# Sistema de Compra (Planeado)
+# Diseño Responsive
 
-La tienda no utilizará pasarela de pago tradicional.
+Actualmente implementado en:
 
-Flujo previsto:
-
-```txt
-Usuario
-↓
-Selecciona productos
-↓
-Carrito
-↓
-Generar pedido
-↓
-Enviar pedido por WhatsApp
-```
-
-Por esta razón actualmente no se maneja inventario ni stock.
+* Navbar.
+* Hero.
+* ProductCard.
+* ProductGrid.
+* ProductDetail.
+* Footer.
+* Catálogo.
 
 ---
 
 # Próximas Funcionalidades
 
+## Home
+
+* Video real en Hero.
+* Carrusel automático.
+* Animaciones de entrada.
+
 ## Catálogo
 
-- Hover entre imagen 1 e imagen 2.
-- Galería de imágenes.
-- Productos relacionados.
-- Filtros avanzados.
+* Hover imagen 1 → imagen 2.
+* Productos relacionados.
+* Filtros avanzados.
 
 ## Producto
 
-- Selector de talla.
-- Selector de color.
-- Vista completa de galería.
+* Zoom de imágenes.
+* Productos relacionados.
+* Compartir producto.
 
 ## Carrito
 
-- Agregar productos.
-- Actualizar cantidades.
-- Eliminar productos.
-- Persistencia local.
-
-## WhatsApp
-
-- Generación automática del pedido.
-- Mensaje dinámico.
-- Envío directo al número de la marca.
+* Persistencia con localStorage.
+* Indicador de cantidad en navbar.
 
 ## Navbar
 
-- Buscador funcional.
-- Favoritos.
-- Indicador de carrito.
+* Buscador funcional.
+* Favoritos.
+
+## Contacto
+
+* Formulario funcional.
+* Integración con correo.
 
 ---
 
-# Objetivo del Proyecto
+# Objetivo Final
 
-Crear una plataforma moderna para la marca CONQUER que combine diseño minimalista, rendimiento y una experiencia de compra sencilla mediante pedidos directos por WhatsApp.
+Crear una plataforma moderna para CONQUER que combine:
 
-### Product Detail
-
-Se implementó la página individual de producto.
-
-Ruta:
-
-/product/:id
-
-Características:
-
-- Galería de imágenes.
-- Imagen principal dinámica.
-- Selector de colores.
-- Selector de tallas.
-- Vista previa de selección.
-- Información completa del producto.
-- Diseño responsive.
-- Navegación dinámica mediante React Router.
-
-Componentes involucrados:
-
-- ProductDetail.jsx
-- ProductDetail.css
-
-Preparado para:
-
-- Integración con carrito.
-- Pedido mediante WhatsApp.
-- Productos relacionados.
-- Zoom de imágenes.
-
-### Carrito de Compras
-
-Se implementó un sistema global de carrito utilizando React Context API.
-
-Archivos:
-
-- CartContext.jsx
-- Cart.jsx
-
-Características actuales:
-
-- Agregar productos al carrito.
-- Guardar color seleccionado.
-- Guardar talla seleccionada.
-- Almacenamiento global mediante Context API.
-- Preparado para persistencia mediante localStorage.
-
-Próximas mejoras:
-
-- Eliminar productos.
-- Modificar cantidades.
-- Persistencia local.
-- Pedido automático por WhatsApp.
-
-### Carrito Avanzado
-
-Se amplió el sistema de carrito para soportar operaciones completas de compra.
-
-Nuevas características:
-
-- Incrementar cantidad.
-- Disminuir cantidad.
-- Eliminar productos.
-- Evitar productos duplicados.
-- Cálculo automático de total.
-- Componente reutilizable CartItem.
-- Resumen de compra.
-
-Componentes:
-
-- Cart.jsx
-- CartItem.jsx
-- CartContext.jsx
-
-Preparado para:
-
-- Integración con WhatsApp.
-- Persistencia con localStorage.
-- Favoritos.
-- Checkout personalizado.
-
-### Pedido mediante WhatsApp
-
-La tienda utiliza WhatsApp como método principal de pedido.
-
-Características:
-
-- Generación automática del mensaje.
-- Inclusión de productos seleccionados.
-- Inclusión de talla y color.
-- Inclusión de cantidades.
-- Cálculo automático del total.
-- Apertura directa de WhatsApp mediante wa.me.
-
-Ventajas:
-
-- No requiere pasarela de pago.
-- Menor complejidad técnica.
-- Comunicación directa con el cliente.
-- Fácil administración de pedidos.
-
+* Diseño minimalista.
+* Rendimiento.
+* Experiencia responsive.
+* Catálogo escalable.
+* Compra simplificada mediante WhatsApp.

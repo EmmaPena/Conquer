@@ -3,9 +3,7 @@ import "../css/AboutSection.css";
 export default function AboutSection() {
     return (
         <section className="about-section">
-
             <div className="about-container">
-
                 <span className="about-subtitle">
                     ABOUT CONQUER
                 </span>

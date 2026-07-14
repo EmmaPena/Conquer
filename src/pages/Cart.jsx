@@ -3,26 +3,16 @@ import CartItem from "../components/CartItem";
 import "../css/Cart.css";
 
 export default function Cart() {
-    const {
-        cartItems,
-        total,
-        increaseQuantity,
-        decreaseQuantity,
-        removeFromCart
-    } = useCart();
+    const { cartItems, total, increaseQuantity, decreaseQuantity, removeFromCart } = useCart()
 
     const generateWhatsAppMessage = () => {
-
         let message =
             "HOLA 👋\n\n" +
             "QUIERO REALIZAR EL SIGUIENTE PEDIDO:\n\n";
-
         cartItems.forEach((item) => {
-
             message +=
                 //"--------------------------------\n\n" +
                 "\n" +
-
                 `PRODUCTO: ${item.name}\n` +
                 `COLOR: ${item.color}\n` +
                 `TALLA: ${item.size}\n` +
@@ -33,14 +23,11 @@ export default function Cart() {
         message +=
             "\n\n" +
             `TOTAL: $${total}`;
-
         return encodeURIComponent(message);
     };
 
     const whatsappNumber = "5217222034684"/*""*/;
-
-    const whatsappUrl =
-        `https://wa.me/${whatsappNumber}?text=${generateWhatsAppMessage()}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${generateWhatsAppMessage()}`;
 
     return (
         <main className="cart-page">

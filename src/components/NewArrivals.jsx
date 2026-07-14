@@ -7,26 +7,20 @@ export default function NewArrivals() {
 
     return (
         <section className="new-arrivals">
-
             <div className="new-arrivals-header">
                 <h2>NOVEDADES</h2>
-
-                <p>
-                    Descubre los lanzamientos más recientes de CONQUER.
-                </p>
+                <p>Descubre los lanzamientos más recientes de CONQUER.</p>
             </div>
 
             <div className="new-arrivals-grid">
-
                 {featuredProducts.map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}
                     />
                 ))}
-
             </div>
-
+            
         </section>
     );
 }

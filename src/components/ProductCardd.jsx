@@ -13,6 +13,7 @@ export default function ProductCard({ product }) {
                     alt={product.name}
                     className="product-image primary"
                 />
+                
                 <img
                     src={secondImage}
                     alt={`${product.name} alternate`}

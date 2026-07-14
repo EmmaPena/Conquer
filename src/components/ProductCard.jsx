@@ -8,7 +8,6 @@ export default function ProductCard({ product }) {
             className="product-link"
         >
             <section className="product-card">
-
                 <img
                     src={product.images?.[0]}
                     alt={product.name}
@@ -20,7 +19,6 @@ export default function ProductCard({ product }) {
                     <p className="description">
                         {product.description}
                     </p>
-
                     <ul>
                         <li>
                             <strong>CÓDIGO:</strong> {product.code}

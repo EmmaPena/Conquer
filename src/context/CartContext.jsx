@@ -16,7 +16,6 @@ export function CartProvider({ children }) {
         );
 
         if (existingItem) {
-
             setCartItems((prev) =>
                 prev.map((item) =>
                     item.productId === product.id &&
@@ -29,7 +28,6 @@ export function CartProvider({ children }) {
                         : item
                 )
             );
-
             return;
         }
 
@@ -107,13 +105,11 @@ export function CartProvider({ children }) {
     };
 
     const total = useMemo(() => {
-
         return cartItems.reduce(
             (acc, item) =>
                 acc + item.price * item.quantity,
             0
         );
-
     }, [cartItems]);
 
     return (

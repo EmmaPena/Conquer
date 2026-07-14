@@ -6,7 +6,6 @@ import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
     const { id } = useParams();
-
     const product = products.find(
         (p) => p.id === Number(id)
     );
@@ -14,7 +13,6 @@ export default function ProductDetail() {
     const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || "");
     const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
     const [activeImage, setActiveImage] = useState(product?.images?.[0] || "");
-
     const { addToCart } = useCart();
 
     if (!product) {
@@ -133,7 +131,7 @@ export default function ProductDetail() {
                             selectedSize
                         );
 
-                       // alert("PRODUCTO AGREGADO AL CARRITO");
+                        //alert("PRODUCTO AGREGADO AL CARRITO");
                     }}
                 >
                     AGREGAR AL CARRITO

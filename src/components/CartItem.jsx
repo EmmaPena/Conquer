@@ -19,12 +19,44 @@ export default function CartItem({ item, increaseQuantity, decreaseQuantity, rem
             </div>
 
             <div className="cart-controls">
-                <button onClick={() => decreaseQuantity(item.productId, item.color, item.size)} > - </button>
+                <button
+                    onClick={() =>
+                        decreaseQuantity(
+                            item.productId,
+                            item.color,
+                            item.size
+                        )
+                    }
+                >
+                    -
+                </button>
+
                 <span>{item.quantity}</span>
-                <button onClick={() => increaseQuantity(item.productId, item.color, item.size)}> + </button>
+                <button
+                    onClick={() =>
+                        increaseQuantity(
+                            item.productId,
+                            item.color,
+                            item.size
+                        )
+                    }
+                >
+                    +
+                </button>
             </div>
 
-            <button className="remove-btn" onClick={() => removeFromCart(item.productId, item.color, item.size)}> ELIMINAR</button>
+            <button
+                className="remove-btn"
+                onClick={() =>
+                    removeFromCart(
+                        item.productId,
+                        item.color,
+                        item.size
+                    )
+                }
+            >
+                ELIMINAR
+            </button>
         </article>
     );
 }

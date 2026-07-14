@@ -17,6 +17,7 @@ export default function HeroSection() {
                 <h1>
                     CONQUER
                 </h1>
+
                 <p>
                     BUILT FOR DISCIPLINE
                 </p>
@@ -25,11 +26,7 @@ export default function HeroSection() {
                     VER COLECCIÓN
                 </button>
             </div>
-            
+
         </section>
     );
 }
-
-
-
-
