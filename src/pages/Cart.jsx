@@ -7,7 +7,7 @@ export default function Cart() {
 
     const generateWhatsAppMessage = () => {
         let message =
-            "HOLA 👋\n\n" +
+            /*"HOLA 👋\n\n" +*/
             "QUIERO REALIZAR EL SIGUIENTE PEDIDO:\n\n";
         cartItems.forEach((item) => {
             message +=
@@ -26,7 +26,7 @@ export default function Cart() {
         return encodeURIComponent(message);
     };
 
-    const whatsappNumber = "5217222034684"/*""*/;
+    const whatsappNumber = /*"5217222034684"*/"";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${generateWhatsAppMessage()}`;
 
     return (

@@ -21,7 +21,7 @@ export default function AppRouter() {
                     <Route path="/hoodies" element={<Hoodies />} />
                     <Route path="/men" element={<Men />} />
                     <Route path="/women" element={<Women />} />
-                    <Route path="/gym" element={<Gym />} />{/*hkhbb */}
+                    {/* <Route path="/gym" element={<Gym />} /> */}
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/cart" element={<Cart />} />

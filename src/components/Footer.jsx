@@ -4,12 +4,12 @@ export default function Footer() {
     return (
         <footer className="footer">
             <a
-                href="https://www.instagram.com/conquerclass.oficial/"
+                href="https://www.instagram.com/emma.pena14"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ig-button"
             >
-                
+
                 <svg
                     viewBox="0 0 16 16"
                     class="bi bi-instagram"
