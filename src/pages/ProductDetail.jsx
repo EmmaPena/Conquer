@@ -134,7 +134,7 @@ export default function ProductDetail() {
                         //alert("PRODUCTO AGREGADO AL CARRITO");
                     }}
                 >
-                    AGREGAR AL CARRITO
+                    Agregar a mi bolsa
                 </button>
             </section>
         </main>

@@ -31,10 +31,10 @@ export default function Cart() {
 
     return (
         <main className="cart-page">
-            <h1>CARRITO</h1>
+            <h1>MI BOLSA</h1>
 
             {cartItems.length === 0 ? (
-                <p>TU CARRITO ESTÁ VACÍO</p>
+                <p>No hay artículos en la bolsa.</p>
             ) : (
 
                 <>
