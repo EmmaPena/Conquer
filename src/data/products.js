@@ -15,7 +15,7 @@ const products = [
             "/images/prime/prime_2.jpg",
             "/images/prime/prime_3.jpg"
         ]
-    },*/
+    },
 
 
 
@@ -160,7 +160,7 @@ const products = [
             "/images/prime/prime_2.jpg",
             "/images/prime/prime_3.jpg"
         ]
-    },
+    },*/
 
     {
         id: 12,
