@@ -1,10 +1,41 @@
-import { createContext, useContext, useMemo, useState } from "react";
+
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useState
+} from "react";
 
 const CartContext = createContext();
 
+const CART_STORAGE_KEY = "conquer-cart";
+
 export function CartProvider({ children }) {
 
-    const [cartItems, setCartItems] = useState([]);
+    // Recuperar el carrito guardado al iniciar la aplicación
+    const [cartItems, setCartItems] = useState(() => {
+        try {
+            const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+            return savedCart ? JSON.parse(savedCart) : [];
+        } catch (error) {
+            console.error("Error al recuperar el carrito:", error);
+            return [];
+        }
+    });
+
+    // Guardar automáticamente cada cambio del carrito
+    useEffect(() => {
+        try {
+            localStorage.setItem(
+                CART_STORAGE_KEY,
+                JSON.stringify(cartItems)
+            );
+        } catch (error) {
+            console.error("Error al guardar el carrito:", error);
+        }
+    }, [cartItems]);
 
     const addToCart = (product, color, size) => {
 
@@ -28,6 +59,7 @@ export function CartProvider({ children }) {
                         : item
                 )
             );
+
             return;
         }
 
@@ -104,6 +136,7 @@ export function CartProvider({ children }) {
         );
     };
 
+    // Calcular el total automáticamente
     const total = useMemo(() => {
         return cartItems.reduce(
             (acc, item) =>
