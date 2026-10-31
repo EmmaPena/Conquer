@@ -1,0 +1,94 @@
+.favorites-page {
+    width: 100%;
+    min-height: 70vh;
+    padding: 5rem 6%;
+    color: rgb(19, 19, 12);
+}
+
+.favorites-header {
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+
+.favorites-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+}
+
+.favorites-header p {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4rem 2.5rem;
+}
+
+.favorites-empty {
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.2rem;
+}
+
+.favorites-empty h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+}
+
+.favorites-empty p {
+    max-width: 420px;
+    line-height: 1.7;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.favorites-explore {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 1.8rem;
+    border: 1px solid rgb(19, 19, 12);
+    color: rgb(19, 19, 12);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: 
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.favorites-explore:hover {
+    background: rgb(19, 19, 12);
+    color: rgb(213, 200, 183);
+}
+
+@media (max-width: 768px) {
+    .favorites-page {
+        padding: 3.5rem 5%;
+    }
+
+    .favorites-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .favorites-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .favorites-empty h2 {
+        font-size: 1.3rem;
+    }
+}

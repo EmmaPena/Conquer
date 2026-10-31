@@ -1,108 +1,50 @@
-# CONQUER
+# CONQUER — Tienda de ropa deportiva
 
-**CONQUER** es un proyecto de comercio electrónico desarrollado con React y Vite para una marca de ropa deportiva y fitness.
-
-El objetivo es ofrecer una experiencia de navegación moderna, minimalista y responsiva, permitiendo a los usuarios explorar colecciones, consultar productos, seleccionar tallas y colores, gestionar un carrito de compras persistente y realizar pedidos directamente mediante WhatsApp.
+CONQUER es una tienda en línea de ropa deportiva desarrollada con React. El proyecto busca ofrecer una experiencia de navegación sencilla, visual y adaptable a dispositivos móviles, permitiendo explorar colecciones, consultar productos, guardar favoritos y preparar pedidos mediante WhatsApp.
 
 ---
 
-# 1. Tecnologías utilizadas
+## 1. Tecnologías utilizadas
 
-| Tecnología | Uso |
-|---|---|
-| React | Construcción de interfaces |
-| Vite | Entorno de desarrollo |
-| JavaScript (ES6+) | Lógica de la aplicación |
-| CSS3 | Diseño y estilos |
-| React Router DOM | Navegación entre páginas |
-| React Context API | Administración global del carrito |
-| localStorage | Persistencia local del carrito |
-| React Icons | Iconografía |
-| WhatsApp API (wa.me) | Generación de pedidos |
+- **React:** construcción de interfaces mediante componentes.
+- **Vite:** entorno de desarrollo y compilación.
+- **JavaScript (ES6+):** lógica de la aplicación.
+- **React Router DOM:** navegación entre páginas.
+- **Context API:** administración global del carrito y favoritos.
+- **React Icons:** iconografía.
+- **CSS3:** estilos, animaciones y diseño responsivo.
+- **LocalStorage:** persistencia de información en el navegador.
+- **WhatsApp:** canal para enviar pedidos.
 
 ---
 
-# 2. Instalación y ejecución
+## 2. Estructura del proyecto
 
-## Requisitos
-
-- Node.js.
-- npm.
-- Editor de código (recomendado: Visual Studio Code).
-
-## Instalación
-
-Clonar o descargar el repositorio y acceder a la carpeta del proyecto.
-
-```bash
-cd CONQUER
-```
-
-Instalar las dependencias:
-
-```bash
-npm install
-```
-
-Iniciar el servidor de desarrollo:
-
-```bash
-npm run dev
-```
-
-Vite proporcionará una dirección local para visualizar la aplicación desde el navegador.
-
----
-
-# 3. Arquitectura del proyecto
-
-El proyecto utiliza una arquitectura modular basada en componentes reutilizables, separación de responsabilidades y centralización de los datos de productos.
-
-## Estructura de directorios
+La organización general del proyecto es la siguiente:
 
 ```text
 CONQUER/
 │
 ├── public/
 │   └── images/
-│       ├── prime/
-│       ├── ramon/
-│       ├── frank/
-│       └── ...
+│       ├── collections/
+│       └── ... imágenes de productos
 │
 ├── src/
-│   │
 │   ├── components/
-│   │   ├── AboutSection.jsx
-│   │   ├── CartItem.jsx
-│   │   ├── CategoryNav.jsx
-│   │   ├── Footer.jsx
-│   │   ├── HeroSection.jsx
 │   │   ├── Navbar.jsx
-│   │   ├── NewArrivals.jsx
+│   │   ├── Collections.jsx
 │   │   ├── ProductCard.jsx
 │   │   ├── ProductGrid.jsx
-│   │   ├── ProductsPage.jsx
-│   │   └── PromoBanner.jsx
+│   │   ├── CartItem.jsx
+│   │   └── ... otros componentes
 │   │
 │   ├── context/
-│   │   └── CartContext.jsx
+│   │   ├── CartContext.jsx
+│   │   └── FavoritesContext.jsx
 │   │
 │   ├── css/
-│   │   ├── AboutSection.css
-│   │   ├── Cart.css
-│   │   ├── CartItem.css
-│   │   ├── CategoryNav.css
-│   │   ├── Footer.css
-│   │   ├── HeroSection.css
-│   │   ├── Navbar.css
-│   │   ├── NewArrivals.css
-│   │   ├── ProductCard.css
-│   │   ├── ProductDetail.css
-│   │   ├── ProductGrid.css
-│   │   ├── ProductsPage.css
-│   │   ├── PromoBanner.css
-│   │   └── SearchResults.css
+│   │   └── ... hojas de estilos
 │   │
 │   ├── data/
 │   │   └── products.js
@@ -111,16 +53,17 @@ CONQUER/
 │   │   └── MainLayout.jsx
 │   │
 │   ├── pages/
-│   │   ├── Cart.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Gym.jsx
 │   │   ├── Home.jsx
 │   │   ├── Hoodies.jsx
 │   │   ├── Men.jsx
-│   │   ├── NotFound.jsx
+│   │   ├── Women.jsx
+│   │   ├── Gym.jsx
 │   │   ├── ProductDetail.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Favorites.jsx
 │   │   ├── SearchResults.jsx
-│   │   └── Women.jsx
+│   │   ├── Contact.jsx
+│   │   └── NotFound.jsx
 │   │
 │   ├── router/
 │   │   └── AppRouter.jsx
@@ -137,545 +80,352 @@ CONQUER/
 └── README.md
 ```
 
-*Nota: la estructura representa la organización de referencia. Los archivos adicionales pueden incorporarse conforme se desarrollen nuevas funcionalidades.*
+La estructura puede ampliarse conforme se incorporen nuevas funcionalidades.
 
 ---
 
-# 4. Sistema de navegación
+## 3. Instalación y ejecución
 
-La navegación está implementada mediante **React Router DOM**, permitiendo cambiar entre páginas sin recargar completamente el sitio.
+### Requisitos
 
-## Rutas disponibles
+- Node.js
+- npm
+- Visual Studio Code (recomendado)
 
-| Ruta | Descripción | Estado |
-|---|---|---|
-| `/` | Página principal | Implementada |
-| `/hoodies` | Catálogo de sudaderas | Implementada |
-| `/men` | Colección para hombre | Implementada |
-| `/women` | Colección para mujer | Implementada |
-| `/product/:id` | Detalle individual del producto | Implementada |
-| `/contact` | Página de contacto | Implementada |
-| `/cart` | Carrito de compras | Implementada |
-| `/search` | Resultados de búsqueda | Implementada |
-| `/gym` | Catálogo de ropa deportiva | Pendiente de habilitar |
-| `*` | Página de error 404 | Implementada |
+### Instalar dependencias
 
-## Layout principal
+Desde la terminal, dentro de la carpeta del proyecto:
 
-El componente `MainLayout.jsx` centraliza los elementos que se mantienen durante la navegación:
-
-- Navbar.
-- Contenido de la página mediante `Outlet`.
-- Footer.
-
-Esto permite mantener una estructura consistente en las diferentes secciones del sitio.
-
----
-
-# 5. Página principal (Home)
-
-La página principal funciona como punto de entrada a la tienda.
-
-## Estructura
-
-```text
-Navbar
-   ↓
-Hero Section
-   ↓
-Novedades
-   ↓
-Promo Banner
-   ↓
-Colecciones
-   ↓
-About Section
-   ↓
-Footer
+```bash
+npm install
 ```
 
-## 5.1 Hero Section
+### Ejecutar el servidor de desarrollo
 
-Sección principal de presentación de la marca.
+```bash
+npm run dev
+```
 
-Características:
+Vite mostrará una dirección local para abrir la aplicación en el navegador.
 
-- Diseño de pantalla completa.
-- Soporte para video de fondo.
-- Overlay para contenido promocional.
-- Mensaje de identidad de marca.
-- Botón de llamada a la acción.
-- Diseño adaptable a dispositivos móviles.
+### Compilar para producción
 
-## 5.2 Novedades
+```bash
+npm run build
+```
 
-Sección destinada a mostrar los lanzamientos recientes.
+---
 
-Características:
+## 4. Navegación y rutas
 
-- Obtención de productos desde `products.js`.
-- Filtrado mediante la propiedad `isNew`.
-- Renderizado dinámico con `.map()`.
-- Reutilización de `ProductCard`.
+La navegación se administra mediante **React Router DOM**, utilizando `BrowserRouter`, `Routes` y `Route`.
 
-## 5.3 Promo Banner
+Actualmente se encuentran configuradas las siguientes rutas:
 
-Sección promocional de la marca.
+| Ruta | Página | Descripción |
+|---|---|---|
+| `/` | Home | Página principal |
+| `/hoodies` | Hoodies | Colección de sudaderas |
+| `/men` | Men | Colección para hombre |
+| `/women` | Women | Colección para mujer |
+| `/gym` | Gym | Colección de ropa para entrenamiento |
+| `/product/:id` | ProductDetail | Detalles de un producto |
+| `/contact` | Contact | Página de contacto |
+| `/cart` | Cart | Carrito de compras |
+| `/search` | SearchResults | Resultados de búsqueda |
+| `/favorites` | Favorites | Productos favoritos |
+| `*` | NotFound | Página para rutas inexistentes |
 
-Características:
+Las páginas principales utilizan `MainLayout`, que permite compartir elementos generales de navegación y estructura.
 
-- Imagen de campaña.
-- Texto promocional.
-- Botón CTA.
-- Diseño responsive.
+La ruta `/gym` está activa, pero no se muestra como un enlace independiente en el Navbar. Se accede desde la sección de colecciones de la página principal.
 
-## 5.4 Colecciones
+---
 
-Sección que permite acceder a las principales líneas de productos.
+## 5. Página principal
 
-Colecciones contempladas:
+La página Home funciona como punto de entrada a la tienda.
+
+Entre sus secciones se encuentran:
+
+- **Hero Section:** presentación visual de la marca.
+- **Novedades:** productos destacados o recientes.
+- **Promo Banner:** espacio para comunicar promociones.
+- **Collections:** acceso visual a las diferentes colecciones.
+- **About:** presentación de la identidad de CONQUER.
+
+La sección Collections contiene accesos a:
 
 - Sudaderas.
 - Hombre.
 - Mujer.
 - Gym.
 
-Características:
-
-- Tarjetas visuales.
-- Navegación mediante React Router.
-- Efectos hover.
-- Diseño adaptable.
-
-## 5.5 About Section
-
-Sección institucional dedicada a presentar la identidad de CONQUER.
-
-Características:
-
-- Filosofía de la marca.
-- Mensaje institucional.
-- Identidad visual.
-- Diseño minimalista.
+Cada tarjeta utiliza `Link` de React Router para navegar a su colección correspondiente.
 
 ---
 
-# 6. Catálogo de productos
+## 6. Catálogo de productos
 
-El catálogo utiliza un sistema reutilizable que permite mostrar productos de diferentes categorías sin duplicar componentes.
-
-## Componentes principales
-
-- `ProductsPage.jsx`
-- `ProductGrid.jsx`
-- `ProductCard.jsx`
-
-## Características
-
-- Renderizado dinámico de productos.
-- Filtrado por categoría.
-- Filtrado por colección.
-- Navegación al detalle individual.
-- Diseño responsive.
-
-## Categorías
-
-- Sudaderas.
-- Playeras.
-- Joggers.
-- Ropa deportiva.
-
-Las categorías se administran mediante la propiedad `category` de cada producto.
-
----
-
-# 7. Modelo de datos
-
-La información de los productos se encuentra centralizada en:
+La información de los productos se centraliza en:
 
 ```text
 src/data/products.js
 ```
 
-## Estructura de un producto
+Esto permite reutilizar los mismos datos en diferentes páginas y componentes.
 
-```javascript
-{
-    id: 10,
-    name: "PRIME EDITION",
-    category: "Sudaderas",
-    collection: ["Hombre", "Mujer"],
-    featured: true,
-    isNew: true,
-    description: "Descripción del producto",
-    code: "AB1201-326",
-    colors: ["NEGRO", "BLANCO"],
-    sizes: ["S", "M", "L", "XL"],
-    price: 599,
-    images: [
-        "/images/prime/prime_1.jpg",
-        "/images/prime/prime_2.jpg",
-        "/images/prime/prime_3.jpg"
-    ]
-}
-```
+### Modelo de producto
 
-## Descripción de propiedades
+Los productos utilizan propiedades como:
 
 | Propiedad | Descripción |
 |---|---|
-| `id` | Identificador único del producto |
-| `name` | Nombre comercial |
-| `category` | Categoría principal |
+| `id` | Identificador único |
+| `name` | Nombre del producto |
+| `category` | Categoría |
 | `collection` | Colecciones a las que pertenece |
-| `featured` | Indica si es un producto destacado |
-| `isNew` | Indica si es una novedad |
-| `description` | Descripción detallada |
-| `code` | Código interno |
+| `featured` | Indica si es destacado |
+| `isNew` | Indica si es novedad |
+| `description` | Descripción |
+| `code` | Código del producto |
 | `colors` | Colores disponibles |
 | `sizes` | Tallas disponibles |
-| `price` | Precio del producto |
-| `images` | Rutas de las imágenes |
+| `price` | Precio |
+| `images` | Imágenes del producto |
 
-## Colecciones múltiples
+### Componentes del catálogo
 
-La propiedad `collection` utiliza un arreglo para permitir que una misma prenda pertenezca a diferentes colecciones.
+- `ProductCard.jsx`: representa cada producto.
+- `ProductGrid.jsx`: organiza los productos en una cuadrícula.
+- `ProductDetail.jsx`: muestra información completa del producto.
 
-Ejemplos:
-
-```javascript
-collection: ["Hombre"]
-
-collection: ["Mujer"]
-
-collection: ["Hombre", "Mujer"]
-```
-
-Esto permite administrar productos unisex sin duplicar registros.
-
-**Importante:** cada producto debe tener un `id` único.
-
-Las imágenes se almacenan dentro de `public/images/` y se referencian mediante rutas relativas a `public`.
+La separación entre datos y componentes facilita agregar, modificar o eliminar productos sin tener que reconstruir las tarjetas manualmente.
 
 ---
 
-# 8. Página de detalle del producto
+## 7. Detalle del producto
 
-Cada producto dispone de una página individual.
-
-Ruta:
+La página de detalle utiliza la ruta dinámica:
 
 ```text
 /product/:id
 ```
 
-Archivo principal:
+A partir del identificador, se obtiene el producto correspondiente desde `products.js`.
 
-```text
-src/pages/ProductDetail.jsx
-```
+Entre sus funcionalidades se encuentran:
 
-Características implementadas:
-
-- Información individual del producto.
-- Galería de imágenes.
-- Imagen principal dinámica.
-- Miniaturas seleccionables.
-- Selector de colores.
-- Selector de tallas.
-- Vista previa de las opciones seleccionadas.
+- Visualización de imágenes del producto.
+- Galería mediante miniaturas.
+- Nombre y descripción.
+- Código del producto.
 - Precio.
-- Descripción.
+- Selección de color.
+- Selección de talla.
 - Integración con el carrito.
 
-La información se obtiene directamente desde `products.js`, utilizando el identificador recibido mediante React Router.
+Esto permite que cada producto tenga una página individual sin necesidad de crear un archivo diferente para cada uno.
 
 ---
 
-# 9. Sistema de carrito de compras
+## 8. Carrito de compras
 
-El carrito está implementado mediante **React Context API**, lo que permite compartir su información entre diferentes componentes.
-
-## Archivos involucrados
+El carrito se administra mediante:
 
 ```text
 src/context/CartContext.jsx
-src/pages/Cart.jsx
-src/components/CartItem.jsx
 ```
 
-## Funcionalidades implementadas
+Se utiliza Context API para compartir el estado del carrito entre los diferentes componentes de la aplicación.
 
-### Agregar productos
+### Funcionalidades implementadas
 
-- Agregar productos desde el detalle.
-- Guardar el identificador del producto.
-- Guardar color seleccionado.
-- Guardar talla seleccionada.
-- Guardar precio e imagen.
-- Asignar cantidad inicial.
-
-### Administrar productos
-
-- Incrementar cantidades.
+- Agregar productos.
+- Aumentar cantidades.
 - Disminuir cantidades.
 - Eliminar productos.
-- Agrupar productos con la misma combinación de producto, talla y color.
-- Calcular automáticamente los subtotales.
-- Calcular el total del pedido.
+- Calcular el total.
+- Diferenciar productos según su color y talla.
+- Mostrar el contador de productos en el Navbar.
 
-### Persistencia mediante localStorage
+### Persistencia con LocalStorage
 
-El carrito cuenta con persistencia local mediante `localStorage`.
+El carrito utiliza la clave:
 
-Características:
-
-- Guardado automático cuando cambia el contenido del carrito.
-- Recuperación de los productos al iniciar la aplicación.
-- Conservación de los productos al actualizar la página.
-- Conservación de las cantidades y opciones seleccionadas.
-- Persistencia entre sesiones del navegador.
-
-La clave utilizada para almacenar la información es:
-
-```javascript
-conquer-cart
+```js
+"conquer-cart"
 ```
 
-La persistencia se administra desde `CartContext.jsx`, evitando duplicar la lógica en los componentes que utilizan el carrito.
+Los datos se guardan en `localStorage`, por lo que permanecen disponibles después de actualizar o cerrar y volver a abrir la página en el mismo navegador.
+
+La información se recupera al iniciar la aplicación y se actualiza cuando cambia el contenido del carrito.
 
 ---
 
-# 10. Pedidos mediante WhatsApp
+## 9. Sistema de favoritos
 
-CONQUER utiliza WhatsApp como medio principal para recibir pedidos.
-
-No se contempla una pasarela de pago tradicional dentro de esta etapa del proyecto.
-
-## Flujo de compra
+Los favoritos se administran mediante:
 
 ```text
-Usuario
-   ↓
-Selecciona un producto
-   ↓
-Selecciona talla y color
-   ↓
-Agrega al carrito
-   ↓
-Modifica cantidades
-   ↓
-Revisa el resumen
-   ↓
-Genera el pedido
-   ↓
-WhatsApp
+src/context/FavoritesContext.jsx
 ```
 
-## Características implementadas
+Este contexto permite compartir la lista de productos favoritos entre las tarjetas, el Navbar y la página de favoritos.
 
-- Generación dinámica del mensaje.
-- Nombre de cada producto.
-- Talla seleccionada.
-- Color seleccionado.
-- Cantidad solicitada.
+### Funcionalidades implementadas
+
+- Agregar productos a favoritos.
+- Quitar productos de favoritos.
+- Identificar si un producto ya está guardado.
+- Mostrar el contador en el Navbar.
+- Consultar los productos guardados desde `/favorites`.
+- Mostrar un mensaje cuando la lista está vacía.
+- Mantener los favoritos después de recargar la página.
+
+### Persistencia con LocalStorage
+
+Los favoritos utilizan la clave:
+
+```js
+"conquer-favorites"
+```
+
+Se almacenan los identificadores de los productos, evitando duplicar toda la información de cada producto.
+
+### Integración visual
+
+El corazón de `ProductCard.jsx` permite agregar o quitar productos de favoritos.
+
+El corazón del Navbar dirige a `/favorites` y muestra la cantidad de productos guardados.
+
+El contador de favoritos es independiente del contador del carrito.
+
+---
+
+## 10. Búsqueda de productos
+
+La aplicación cuenta con una funcionalidad de búsqueda integrada al Navbar y una página de resultados.
+
+La búsqueda utiliza la ruta:
+
+```text
+/search
+```
+
+La página `SearchResults.jsx` se encarga de mostrar los resultados correspondientes.
+
+También se contempla la organización de resultados mediante opciones de filtrado, clasificación y navegación.
+
+---
+
+## 11. Pedidos mediante WhatsApp
+
+CONQUER utiliza WhatsApp como canal para gestionar los pedidos.
+
+Desde el carrito, el usuario puede preparar un mensaje con los detalles de su compra.
+
+El mensaje incluye información como:
+
+- Productos seleccionados.
+- Color.
+- Talla.
+- Cantidad.
 - Subtotal por producto.
-- Total general.
-- Codificación del mensaje para URL.
-- Apertura de WhatsApp mediante `wa.me`.
+- Total de la compra.
 
-El número telefónico de destino se configura dentro del componente del carrito.
+Al continuar con el pedido, se abre WhatsApp mediante un enlace `wa.me` con el mensaje preparado.
 
-**Nota:** no se administra inventario ni disponibilidad de existencias mediante el sistema.
+**Importante:** abrir WhatsApp no elimina automáticamente los productos del carrito. El contenido permanece guardado hasta que el usuario lo modifique.
 
 ---
 
-# 11. Sistema de búsqueda
+## 12. Navbar y navegación global
 
-El sitio cuenta con un buscador integrado en el Navbar y una página dedicada a mostrar los resultados.
+El Navbar funciona como elemento de navegación compartido.
 
-## Archivos involucrados
+Entre sus elementos se encuentran:
 
-- `Navbar.jsx`
-- `Navbar.css`
-- `SearchResults.jsx`
-- `SearchResults.css`
-
-## Funcionamiento
-
-1. El usuario introduce el nombre o término de búsqueda.
-2. El buscador genera una consulta mediante parámetros URL.
-3. React Router navega hacia `/search?q=termino`.
-4. `SearchResults.jsx` obtiene el parámetro mediante `useLocation`.
-5. Se filtran los productos disponibles.
-6. Los resultados se muestran mediante `ProductsPage`.
-
-## Campos de búsqueda
-
-El sistema contempla coincidencias en:
-
-- Nombre.
-- Categoría.
-- Descripción.
-- Código.
-- Colores.
-- Colecciones.
-
-También contempla la normalización de texto para facilitar las coincidencias independientemente de las mayúsculas y los acentos.
-
-## Interfaz de resultados
-
-La página de resultados utiliza una distribución inspirada en catálogos de marcas deportivas.
-
-Características:
-
-- Panel lateral para opciones de filtrado y ordenamiento.
-- Área principal para mostrar los productos.
-- Distribución adaptable a diferentes tamaños de pantalla.
-- Reutilización de componentes del catálogo.
-
-## Búsqueda en Navbar
-
-El buscador está integrado en la navegación principal.
-
-Características:
-
-- Barra de búsqueda estilizada para escritorio.
-- Efecto visual al enfocar el campo.
-- Búsqueda mediante la tecla Enter.
-- Botón para ejecutar la búsqueda.
-- Diseño adaptado a dispositivos móviles.
-- Panel desplegable de búsqueda en móvil.
-- Navegación directa hacia la página de resultados.
-
-## Estados de búsqueda
-
-- Resultados encontrados.
-- Ningún producto encontrado.
-- Consulta vacía.
-
----
-
-# 12. Componentes globales
-
-## Navbar
-
-Responsable de la navegación principal.
-
-Características:
-
-- Acceso a las principales colecciones.
-- Logotipo central.
-- Menú adaptable a dispositivos móviles.
-- Iconografía mediante React Icons.
-- Barra de búsqueda funcional.
-- Panel de búsqueda desplegable en móvil.
+- Acceso a las principales secciones.
+- Búsqueda de productos.
 - Acceso al carrito.
-- Indicador dinámico de cantidad de productos.
+- Acceso a favoritos.
+- Contador dinámico del carrito.
+- Contador dinámico de favoritos.
+- Menú adaptable a dispositivos móviles.
 
-El contador del carrito obtiene la información directamente desde `CartContext` y muestra la cantidad total de unidades agregadas.
-
-## Footer
-
-Componente global ubicado al final de las páginas.
-
-Características:
-
-- Información de la marca.
-- Acceso a Instagram.
-- Derechos reservados.
-
-## ProductCard
-
-Componente reutilizable para representar cada producto.
-
-Características:
-
-- Imagen principal.
-- Nombre.
-- Descripción.
-- Información básica.
-- Precio.
-- Navegación hacia el detalle del producto.
+Los contadores se actualizan de acuerdo con los cambios realizados en sus respectivos contextos.
 
 ---
 
-# 13. Diseño y experiencia de usuario
+## 13. Diseño y experiencia de usuario
 
-El diseño busca mantener una identidad visual minimalista, inspirada en la disciplina, el entrenamiento y el estilo de vida deportivo.
+La identidad visual de CONQUER busca mantener una apariencia minimalista, deportiva y moderna.
 
-Características:
+Algunos elementos de diseño utilizados son:
 
-- Diseño responsive.
-- Organización modular de estilos.
-- Tipografía Cinzel para elementos destacados.
-- Paleta de colores propia de la marca.
-- Transiciones y efectos visuales.
-- Adaptación a dispositivos móviles.
-- Componentes reutilizables.
-- Navegación adaptable a escritorio y móvil.
+- Tipografía Cinzel para encabezados destacados.
+- Fondos en tonos beige y colores neutros.
+- Texto en tonos oscuros.
+- Imágenes como elemento principal del catálogo.
+- Transiciones y animaciones CSS.
+- Diseño adaptable a diferentes tamaños de pantalla.
+- Navegación mediante componentes reutilizables.
 
----
-
-# 14. Funcionalidades pendientes
-
-Las siguientes características se contemplan para futuras etapas.
-
-## Catálogo
-
-- Cambio automático de imagen al pasar el cursor.
-- Carrusel interactivo de productos.
-- Mejoras en los filtros avanzados.
-- Productos relacionados.
-
-## Detalle del producto
-
-- Zoom de imágenes.
-- Compartir productos.
-- Productos relacionados.
-
-## Favoritos
-
-- Agregar y eliminar favoritos.
-- Página de productos favoritos.
-- Persistencia local.
-
-## Búsqueda
-
-- Sugerencias de búsqueda.
-- Historial de búsquedas.
-- Mejoras adicionales en los filtros.
-
-## Contacto
-
-- Formulario funcional.
-- Validación de campos.
-- Integración con correo electrónico.
-
-## Experiencia visual
-
-- Animaciones de entrada.
-- Transiciones entre secciones.
-- Mejoras del Hero.
-- Carruseles interactivos.
+La intención es mantener una identidad visual consistente entre las distintas páginas.
 
 ---
 
-# 15. Objetivo final
+## 14. Estado actual del proyecto
 
-Desarrollar una plataforma digital para CONQUER que permita presentar y comercializar prendas deportivas mediante una experiencia moderna, intuitiva y visualmente atractiva.
+### Funcionalidades implementadas
 
-El proyecto busca combinar:
+- [x] Estructura inicial con React y Vite.
+- [x] Navegación con React Router DOM.
+- [x] Página principal.
+- [x] Secciones de colecciones.
+- [x] Colección de sudaderas.
+- [x] Colección para hombre.
+- [x] Colección para mujer.
+- [x] Ruta Gym activa.
+- [x] Catálogo de productos.
+- [x] Tarjetas reutilizables.
+- [x] Página de detalle de producto.
+- [x] Selección de color y talla.
+- [x] Carrito de compras.
+- [x] Modificación de cantidades.
+- [x] Cálculo del total.
+- [x] Persistencia del carrito con LocalStorage.
+- [x] Contador dinámico del carrito.
+- [x] Pedidos mediante WhatsApp.
+- [x] Búsqueda de productos.
+- [x] Página de favoritos.
+- [x] Agregar y quitar favoritos.
+- [x] Persistencia de favoritos con LocalStorage.
+- [x] Contador dinámico de favoritos.
+- [x] Navbar con acceso a favoritos.
+- [x] Contadores independientes para carrito y favoritos.
 
-- Identidad de marca.
-- Diseño minimalista.
-- Navegación intuitiva.
-- Catálogo escalable.
-- Experiencia responsive.
-- Gestión sencilla de pedidos.
-- Persistencia local del carrito.
-- Comunicación directa mediante WhatsApp.
+### Mejoras y funcionalidades pendientes
+
+Las siguientes son posibilidades de desarrollo y no deben considerarse implementadas todavía:
+
+- [ ] Integrar la opción de agregar productos al carrito directamente desde favoritos.
+- [ ] Ampliar y organizar el catálogo de productos.
+- [ ] Mejorar los filtros y opciones de clasificación.
+- [ ] Revisar y optimizar la experiencia móvil.
+- [ ] Implementar validaciones adicionales en el proceso de pedido.
+- [ ] Optimizar imágenes y rendimiento.
+- [ ] Revisar accesibilidad y navegación con teclado.
+- [ ] Evaluar una futura integración con backend y base de datos.
+- [ ] Evaluar una futura pasarela de pago, si el proyecto lo requiere.
 
 ---
 
-**CONQUER — DISCIPLINE. CONSISTENCY. CONQUER.**
+## 15. Objetivo general
+
+El objetivo de CONQUER es desarrollar una tienda en línea de ropa deportiva que combine una identidad visual propia con una experiencia de compra clara y funcional.
+
+El proyecto se construye de manera progresiva, priorizando la organización del código, la reutilización de componentes y la implementación de funcionalidades que permitan evolucionar la aplicación sin perder su estructura.
+
+**CONQUER — Built for those who conquer.**

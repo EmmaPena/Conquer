@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -10,6 +9,7 @@ import {
 } from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
+import { useFavorites } from "../context/FavoritesContext";
 import "../css/Navbar.css";
 
 export default function Navbar() {
@@ -19,7 +19,9 @@ export default function Navbar() {
     const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
     const navigate = useNavigate();
+
     const { cartItems } = useCart();
+    const { favoritesCount } = useFavorites();
 
     const cartCount = cartItems.reduce(
         (acc, item) => acc + item.quantity,
@@ -82,8 +84,10 @@ export default function Navbar() {
             <div className="navbar-actions">
 
                 {/* BÚSQUEDA DESKTOP */}
-                <form className="navbar-search desktop-search" onSubmit={handleSearch}>
-
+                <form
+                    className="navbar-search desktop-search"
+                    onSubmit={handleSearch}
+                >
                     <FiSearch className="search-icon" />
 
                     <input
@@ -101,25 +105,37 @@ export default function Navbar() {
                     >
                         <FiSearch />
                     </button>
-
                 </form>
 
                 {/* BÚSQUEDA MÓVIL */}
                 <button
                     className="mobile-search-toggle"
                     onClick={toggleMobileSearch}
-                    aria-label={mobileSearchOpen ? "Cerrar búsqueda" : "Abrir búsqueda"}
+                    aria-label={
+                        mobileSearchOpen
+                            ? "Cerrar búsqueda"
+                            : "Abrir búsqueda"
+                    }
                 >
                     {mobileSearchOpen ? <FiX /> : <FiSearch />}
                 </button>
 
-                <button
-                    className="icon-btn"
-                    aria-label="Favoritos"
+                {/* FAVORITOS */}
+                <Link
+                    to="/favorites"
+                    className="icon-btn cart-btn"
+                    aria-label={`Favoritos, ${favoritesCount} productos`}
                 >
                     <FiHeart />
-                </button>
 
+                    {favoritesCount > 0 && (
+                        <span className="cart-count">
+                            {favoritesCount > 99 ? "99+" : favoritesCount}
+                        </span>
+                    )}
+                </Link>
+
+                {/* CARRITO */}
                 <Link
                     to="/cart"
                     className="icon-btn cart-btn"
@@ -137,10 +153,15 @@ export default function Navbar() {
             </div>
 
             {/* BARRA DESPLEGABLE MÓVIL */}
-            <div className={`mobile-search-panel ${mobileSearchOpen ? "open" : ""}`}>
-
-                <form className="mobile-search-form" onSubmit={handleSearch}>
-
+            <div
+                className={`mobile-search-panel ${
+                    mobileSearchOpen ? "open" : ""
+                }`}
+            >
+                <form
+                    className="mobile-search-form"
+                    onSubmit={handleSearch}
+                >
                     <FiSearch />
 
                     <input
@@ -154,9 +175,7 @@ export default function Navbar() {
                     <button type="submit" aria-label="Buscar">
                         Buscar
                     </button>
-
                 </form>
-
             </div>
 
         </header>

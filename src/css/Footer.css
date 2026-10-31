@@ -1,18 +1,21 @@
 .footer {
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 56px;
-    background: rgb(213, 200, 183);
-    backdrop-filter: blur(6px);
+    background: transparent;
+    pointer-events: none; 
 }
 
 /* Botón Instagram */
 .ig-button {
-    background: transparent;
+    pointer-events: auto;
+    background: rgb(213, 200, 183);
     position: relative;
     padding: 5px 15px;
     display: flex;
