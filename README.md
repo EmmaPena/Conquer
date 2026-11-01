@@ -122,19 +122,19 @@ La navegación se administra mediante **React Router DOM**, utilizando `BrowserR
 
 Actualmente se encuentran configuradas las siguientes rutas:
 
-| Ruta | Página | Descripción |
-|---|---|---|
-| `/` | Home | Página principal |
-| `/hoodies` | Hoodies | Colección de sudaderas |
-| `/men` | Men | Colección para hombre |
-| `/women` | Women | Colección para mujer |
-| `/gym` | Gym | Colección de ropa para entrenamiento |
-| `/product/:id` | ProductDetail | Detalles de un producto |
-| `/contact` | Contact | Página de contacto |
-| `/cart` | Cart | Carrito de compras |
-| `/search` | SearchResults | Resultados de búsqueda |
-| `/favorites` | Favorites | Productos favoritos |
-| `*` | NotFound | Página para rutas inexistentes |
+| Ruta           | Página        | Descripción                          |
+| -------------- | ------------- | ------------------------------------ |
+| `/`            | Home          | Página principal                     |
+| `/hoodies`     | Hoodies       | Colección de sudaderas               |
+| `/men`         | Men           | Colección para hombre                |
+| `/women`       | Women         | Colección para mujer                 |
+| `/gym`         | Gym           | Colección de ropa para entrenamiento |
+| `/product/:id` | ProductDetail | Detalles de un producto              |
+| `/contact`     | Contact       | Página de contacto                   |
+| `/cart`        | Cart          | Carrito de compras                   |
+| `/search`      | SearchResults | Resultados de búsqueda               |
+| `/favorites`   | Favorites     | Productos favoritos                  |
+| `*`            | NotFound      | Página para rutas inexistentes       |
 
 Las páginas principales utilizan `MainLayout`, que permite compartir elementos generales de navegación y estructura.
 
@@ -179,20 +179,20 @@ Esto permite reutilizar los mismos datos en diferentes páginas y componentes.
 
 Los productos utilizan propiedades como:
 
-| Propiedad | Descripción |
-|---|---|
-| `id` | Identificador único |
-| `name` | Nombre del producto |
-| `category` | Categoría |
-| `collection` | Colecciones a las que pertenece |
-| `featured` | Indica si es destacado |
-| `isNew` | Indica si es novedad |
-| `description` | Descripción |
-| `code` | Código del producto |
-| `colors` | Colores disponibles |
-| `sizes` | Tallas disponibles |
-| `price` | Precio |
-| `images` | Imágenes del producto |
+| Propiedad     | Descripción                     |
+| ------------- | ------------------------------- |
+| `id`          | Identificador único             |
+| `name`        | Nombre del producto             |
+| `category`    | Categoría                       |
+| `collection`  | Colecciones a las que pertenece |
+| `featured`    | Indica si es destacado          |
+| `isNew`       | Indica si es novedad            |
+| `description` | Descripción                     |
+| `code`        | Código del producto             |
+| `colors`      | Colores disponibles             |
+| `sizes`       | Tallas disponibles              |
+| `price`       | Precio                          |
+| `images`      | Imágenes del producto           |
 
 ### Componentes del catálogo
 
@@ -248,13 +248,15 @@ Se utiliza Context API para compartir el estado del carrito entre los diferentes
 - Calcular el total.
 - Diferenciar productos según su color y talla.
 - Mostrar el contador de productos en el Navbar.
+- Agregar productos desde la página de detalle.
+- Agregar productos directamente desde favoritos.
 
 ### Persistencia con LocalStorage
 
 El carrito utiliza la clave:
 
 ```js
-"conquer-cart"
+"conquer-cart";
 ```
 
 Los datos se guardan en `localStorage`, por lo que permanecen disponibles después de actualizar o cerrar y volver a abrir la página en el mismo navegador.
@@ -288,7 +290,7 @@ Este contexto permite compartir la lista de productos favoritos entre las tarjet
 Los favoritos utilizan la clave:
 
 ```js
-"conquer-favorites"
+"conquer-favorites";
 ```
 
 Se almacenan los identificadores de los productos, evitando duplicar toda la información de cada producto.
@@ -300,6 +302,23 @@ El corazón de `ProductCard.jsx` permite agregar o quitar productos de favoritos
 El corazón del Navbar dirige a `/favorites` y muestra la cantidad de productos guardados.
 
 El contador de favoritos es independiente del contador del carrito.
+
+### Integración de favoritos con el carrito
+
+Desde la página `/favorites` es posible agregar productos directamente a la bolsa sin necesidad de entrar a la página individual de cada producto.
+
+Al pulsar el botón **AGREGAR A LA BOLSA**, se despliega un selector inline debajo de la tarjeta del producto.
+
+Este selector permite:
+
+- Elegir el color disponible.
+- Elegir la talla disponible.
+- Confirmar la selección.
+- Agregar el producto al carrito.
+
+La integración reutiliza la función `addToCart()` de `CartContext.jsx`, manteniendo una sola lógica para administrar los productos de la bolsa.
+
+Después de confirmar, se muestra un mensaje de confirmación y el producto queda disponible en el carrito.
 
 ---
 
@@ -405,12 +424,14 @@ La intención es mantener una identidad visual consistente entre las distintas p
 - [x] Contador dinámico de favoritos.
 - [x] Navbar con acceso a favoritos.
 - [x] Contadores independientes para carrito y favoritos.
+- [x] Agregar productos al carrito directamente desde favoritos.
+- [x] Selección inline de color y talla desde favoritos.
+- [x] Reutilización de `CartContext` para agregar productos desde diferentes páginas.
 
 ### Mejoras y funcionalidades pendientes
 
 Las siguientes son posibilidades de desarrollo y no deben considerarse implementadas todavía:
 
-- [ ] Integrar la opción de agregar productos al carrito directamente desde favoritos.
 - [ ] Ampliar y organizar el catálogo de productos.
 - [ ] Mejorar los filtros y opciones de clasificación.
 - [ ] Revisar y optimizar la experiencia móvil.

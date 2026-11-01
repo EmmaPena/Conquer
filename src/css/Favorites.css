@@ -92,3 +92,152 @@
         font-size: 1.3rem;
     }
 }
+
+
+/* Cada producto agrupa su tarjeta y sus controles de compra. */
+.favorite-product-item {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Botón principal para desplegar las opciones. */
+.favorite-add-btn {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 12px;
+
+    border: 1px solid rgb(19, 19, 12);
+    background: rgb(19, 19, 12);
+    color: rgb(213, 200, 183);
+
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.favorite-add-btn:hover {
+    background: transparent;
+    color: rgb(19, 19, 12);
+}
+
+/* Panel que se despliega debajo del botón. */
+.favorite-product-options {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 20px;
+
+    border: 1px solid rgba(19, 19, 12, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+
+    animation: favoriteOptionsIn 0.25s ease;
+}
+
+.favorite-product-options h3 {
+    margin: 0 0 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+/* Agrupa el título y los botones de cada variante. */
+.favorite-option-group {
+    margin-bottom: 18px;
+}
+
+.favorite-option-group h4 {
+    margin: 0 0 10px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+}
+
+/* Distribución de las opciones de color y talla. */
+.favorite-options-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Botones individuales de color y talla. */
+.favorite-option-btn {
+    min-width: 42px;
+    padding: 9px 13px;
+
+    border: 1px solid rgba(19, 19, 12, 0.45);
+    background: transparent;
+    color: rgb(19, 19, 12);
+
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Identifica visualmente la opción seleccionada. */
+.favorite-option-btn.active {
+    background: rgb(19, 19, 12);
+    color: rgb(213, 200, 183);
+}
+
+/* Botón final para agregar el producto. */
+.favorite-confirm-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+
+    border: 1px solid rgb(19, 19, 12);
+    background: transparent;
+    color: rgb(19, 19, 12);
+
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.favorite-confirm-btn:hover {
+    background: rgb(19, 19, 12);
+    color: rgb(213, 200, 183);
+}
+
+/* Confirmación después de agregar el producto. */
+.favorite-added-message {
+    margin: 12px 0 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Animación discreta al desplegar las opciones. */
+@keyframes favoriteOptionsIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes para pantallas pequeñas. */
+@media (max-width: 600px) {
+    .favorite-product-options {
+        padding: 15px;
+    }
+
+    .favorite-add-btn,
+    .favorite-confirm-btn {
+        font-size: 10px;
+    }
+}
