@@ -1,12 +1,11 @@
-
 import { Link } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { useFavorites } from "../context/FavoritesContext";
 import "../css/ProductCard.css";
 
 export default function ProductCard({ product }) {
-    const { isFavorite, toggleFavorite } = useFavorites();
 
+    const { isFavorite, toggleFavorite } = useFavorites();
     const favorite = isFavorite(product.id);
 
     return (
@@ -15,6 +14,7 @@ export default function ProductCard({ product }) {
                 to={`/product/${product.id}`}
                 className="product-link"
             >
+
                 <section className="product-card">
                     <img
                         src={product.images?.[0]}
@@ -24,21 +24,24 @@ export default function ProductCard({ product }) {
 
                     <div className="product-info">
                         <h2>{product.name}</h2>
+                        {(product.code || product.colors?.length > 0) && (
 
-                        <p className="description">
-                            {product.description}
-                        </p>
+                            <ul>
+                                {product.code && (
+                                    <li>
+                                        <strong>CÓDIGO:</strong>{" "}
+                                        {product.code}
+                                    </li>
+                                )}
 
-                        <ul>
-                            <li>
-                                <strong>CÓDIGO:</strong> {product.code}
-                            </li>
-
-                            <li>
-                                <strong>COLOR:</strong>{" "}
-                                {product.colors?.join(", ") || product.color}
-                            </li>
-                        </ul>
+                                {product.colors?.length > 0 && (
+                                    <li>
+                                        <strong>COLOR:</strong>{" "}
+                                        {product.colors.join(", ")}
+                                    </li>
+                                )}
+                            </ul>
+                        )}
 
                         <span className="price">
                             ${product.price}

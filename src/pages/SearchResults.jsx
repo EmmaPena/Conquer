@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import "../css/SearchResults.css";
 
 export default function SearchResults() {
+
     const { search } = useLocation();
 
     const query =
@@ -27,10 +28,10 @@ export default function SearchResults() {
 
     // Buscar productos.
     const searchResults = products.filter((product) => {
+
         const searchableText = [
             product.name,
             product.category,
-            product.description,
             product.code,
             ...(product.colors || []),
             ...(product.collection || [])
@@ -48,6 +49,7 @@ export default function SearchResults() {
 
     // Aplicar filtros.
     const filteredProducts = searchResults.filter((product) => {
+
         const matchesSize =
             selectedSizes.length === 0 ||
             selectedSizes.some((size) =>
@@ -74,7 +76,9 @@ export default function SearchResults() {
 
     // Ordenar resultados.
     const sortedProducts = [...filteredProducts].sort((a, b) => {
+
         switch (sortBy) {
+
             case "price-low":
                 return a.price - b.price;
 
@@ -87,15 +91,18 @@ export default function SearchResults() {
             default:
                 return 0;
         }
+
     });
 
     // Seleccionar o deseleccionar filtros.
-    const toggleFilter = (value, selected, setSelected) => {
+    const toggleFilter = (value, setSelected) => {
+
         setSelected((previous) =>
             previous.includes(value)
                 ? previous.filter((item) => item !== value)
                 : [...previous, value]
         );
+
     };
 
     // Limpiar filtros.
@@ -111,6 +118,7 @@ export default function SearchResults() {
         return (
             <main className="search-empty">
                 <h1>BUSCAR PRODUCTOS</h1>
+
                 <p>
                     UTILIZA EL BUSCADOR PARA ENCONTRAR
                     LO QUE ESTÁS BUSCANDO.
@@ -121,21 +129,20 @@ export default function SearchResults() {
 
     return (
         <main className="search-results-page">
-
             <aside className="search-sidebar">
-
                 <div className="search-heading">
                     <span>RESULTADOS DE BÚSQUEDA</span>
-
                     <h1>"{query}"</h1>
 
                     <p>
                         {sortedProducts.length} PRODUCTO
                         {sortedProducts.length !== 1 ? "S" : ""}
                     </p>
+
                 </div>
 
                 <div className="filter-heading">
+
                     <h2>FILTRAR Y ORDENAR</h2>
 
                     <button onClick={clearFilters}>
@@ -196,18 +203,17 @@ export default function SearchResults() {
 
                     {availableSizes.map((size) => (
                         <label key={size}>
+
                             <input
                                 type="checkbox"
                                 checked={selectedSizes.includes(size)}
                                 onChange={() =>
-                                    toggleFilter(
-                                        size,
-                                        selectedSizes,
-                                        setSelectedSizes
-                                    )
+                                    toggleFilter(size, setSelectedSizes)
                                 }
                             />
+
                             {size}
+
                         </label>
                     ))}
                 </section>
@@ -217,13 +223,13 @@ export default function SearchResults() {
 
                     {["Hombre", "Mujer"].map((collection) => (
                         <label key={collection}>
+
                             <input
                                 type="checkbox"
                                 checked={selectedCollections.includes(collection)}
                                 onChange={() =>
                                     toggleFilter(
                                         collection,
-                                        selectedCollections,
                                         setSelectedCollections
                                     )
                                 }
@@ -254,7 +260,6 @@ export default function SearchResults() {
                         DESTACADOS
                     </label>
                 </section>
-
             </aside>
 
             <section className="search-products">
@@ -266,6 +271,7 @@ export default function SearchResults() {
                 </div>
 
                 {sortedProducts.length > 0 ? (
+
                     <div className="search-product-grid">
                         {sortedProducts.map((product) => (
                             <ProductCard
@@ -274,9 +280,12 @@ export default function SearchResults() {
                             />
                         ))}
                     </div>
+
                 ) : (
+
                     <div className="search-no-results">
                         <h2>NO HAY PRODUCTOS</h2>
+
                         <p>
                             NO ENCONTRAMOS PRODUCTOS CON
                             LOS FILTROS SELECCIONADOS.
@@ -287,9 +296,7 @@ export default function SearchResults() {
                         </button>
                     </div>
                 )}
-
             </section>
-
         </main>
     );
 }

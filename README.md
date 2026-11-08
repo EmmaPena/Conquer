@@ -13,7 +13,7 @@ CONQUER es una tienda en línea de ropa deportiva desarrollada con React. El pro
 - **Context API:** administración global del carrito y favoritos.
 - **React Icons:** iconografía.
 - **CSS3:** estilos, animaciones y diseño responsivo.
-- **LocalStorage:** persistencia de información en el navegador.
+- **LocalStorage:** almacenamiento persistente de información en el navegador.
 - **WhatsApp:** canal para enviar pedidos.
 
 ---
@@ -114,6 +114,8 @@ Vite mostrará una dirección local para abrir la aplicación en el navegador.
 npm run build
 ```
 
+Este comando genera la versión optimizada de la aplicación dentro de la carpeta `dist/`.
+
 ---
 
 ## 4. Navegación y rutas
@@ -139,6 +141,16 @@ Actualmente se encuentran configuradas las siguientes rutas:
 Las páginas principales utilizan `MainLayout`, que permite compartir elementos generales de navegación y estructura.
 
 La ruta `/gym` está activa, pero no se muestra como un enlace independiente en el Navbar. Se accede desde la sección de colecciones de la página principal.
+
+La ruta dinámica `/product/:id` utiliza identificadores de tipo _slug_, por ejemplo:
+
+```text
+/product/thragg-short-sleeve
+/product/prime-edition
+/product/ramon-dino
+```
+
+Esto permite identificar cada producto mediante una dirección legible y facilitar su navegación.
 
 ---
 
@@ -175,30 +187,55 @@ src/data/products.js
 
 Esto permite reutilizar los mismos datos en diferentes páginas y componentes.
 
+Actualmente, el catálogo contiene **12 productos activos**, organizados en las categorías de sudaderas y playeras.
+
 ### Modelo de producto
 
-Los productos utilizan propiedades como:
+Los productos utilizan las siguientes propiedades:
 
-| Propiedad     | Descripción                     |
-| ------------- | ------------------------------- |
-| `id`          | Identificador único             |
-| `name`        | Nombre del producto             |
-| `category`    | Categoría                       |
-| `collection`  | Colecciones a las que pertenece |
-| `featured`    | Indica si es destacado          |
-| `isNew`       | Indica si es novedad            |
-| `description` | Descripción                     |
-| `code`        | Código del producto             |
-| `colors`      | Colores disponibles             |
-| `sizes`       | Tallas disponibles              |
-| `price`       | Precio                          |
-| `images`      | Imágenes del producto           |
+| Propiedad    | Descripción                                |
+| ------------ | ------------------------------------------ |
+| `id`         | Identificador único de tipo slug           |
+| `name`       | Nombre del producto                        |
+| `category`   | Categoría del producto                     |
+| `collection` | Arreglo de colecciones a las que pertenece |
+| `featured`   | Indica si es un producto destacado         |
+| `isNew`      | Indica si es una novedad                   |
+| `code`       | Código del producto                        |
+| `colors`     | Arreglo de colores disponibles             |
+| `sizes`      | Arreglo de tallas disponibles              |
+| `price`      | Precio numérico del producto               |
+| `images`     | Arreglo de imágenes del producto           |
+
+Las descripciones se eliminaron del modelo para mantener la información del catálogo más sencilla y evitar datos que no se utilizan en la presentación actual.
+
+### Identificadores mediante slugs
+
+Anteriormente, los productos utilizaban identificadores numéricos. Se realizó una actualización para utilizar identificadores de tipo string, basados en el nombre de cada producto.
+
+Ejemplos:
+
+```js
+{
+    id: "thragg-short-sleeve",
+    name: "Short Sleeve Thragg"
+}
+```
+
+```js
+{
+    id: "ramon-dino",
+    name: "RAMON DINO"
+}
+```
+
+Los identificadores se utilizan en las rutas, el carrito y el sistema de favoritos.
 
 ### Componentes del catálogo
 
 - `ProductCard.jsx`: representa cada producto.
 - `ProductGrid.jsx`: organiza los productos en una cuadrícula.
-- `ProductDetail.jsx`: muestra información completa del producto.
+- `ProductDetail.jsx`: muestra la información del producto seleccionado.
 
 La separación entre datos y componentes facilita agregar, modificar o eliminar productos sin tener que reconstruir las tarjetas manualmente.
 
@@ -212,17 +249,17 @@ La página de detalle utiliza la ruta dinámica:
 /product/:id
 ```
 
-A partir del identificador, se obtiene el producto correspondiente desde `products.js`.
+A partir del slug recibido en la URL, se obtiene el producto correspondiente desde `products.js`.
 
 Entre sus funcionalidades se encuentran:
 
 - Visualización de imágenes del producto.
 - Galería mediante miniaturas.
-- Nombre y descripción.
-- Código del producto.
+- Nombre del producto.
+- Código del producto, cuando está disponible.
 - Precio.
-- Selección de color.
-- Selección de talla.
+- Selección de color, cuando existen opciones disponibles.
+- Selección de talla, cuando existen opciones disponibles.
 - Integración con el carrito.
 
 Esto permite que cada producto tenga una página individual sin necesidad de crear un archivo diferente para cada uno.
@@ -259,9 +296,13 @@ El carrito utiliza la clave:
 "conquer-cart";
 ```
 
-Los datos se guardan en `localStorage`, por lo que permanecen disponibles después de actualizar o cerrar y volver a abrir la página en el mismo navegador.
+Los datos se guardan en `localStorage`, por lo que permanecen disponibles después de actualizar la página o cerrar y volver a abrir la tienda en el mismo navegador.
 
-La información se recupera al iniciar la aplicación y se actualiza cuando cambia el contenido del carrito.
+El contexto recupera la información almacenada durante su inicialización mediante una función de estado inicial de `useState`.
+
+Posteriormente, `useEffect` actualiza automáticamente el almacenamiento cada vez que cambia el contenido del carrito.
+
+De esta manera, los productos, sus cantidades, colores y tallas seleccionadas se conservan entre sesiones del navegador.
 
 ---
 
@@ -294,6 +335,8 @@ Los favoritos utilizan la clave:
 ```
 
 Se almacenan los identificadores de los productos, evitando duplicar toda la información de cada producto.
+
+Al iniciar la aplicación, el contexto recupera los identificadores almacenados. Cuando la lista cambia, los nuevos datos se guardan automáticamente.
 
 ### Integración visual
 
@@ -334,7 +377,9 @@ La búsqueda utiliza la ruta:
 
 La página `SearchResults.jsx` se encarga de mostrar los resultados correspondientes.
 
-También se contempla la organización de resultados mediante opciones de filtrado, clasificación y navegación.
+La búsqueda consulta la información disponible en el catálogo, como el nombre, la categoría, el código y los colores de los productos.
+
+También contempla opciones de filtrado y clasificación para organizar los resultados.
 
 ---
 
@@ -407,26 +452,32 @@ La intención es mantener una identidad visual consistente entre las distintas p
 - [x] Colección para hombre.
 - [x] Colección para mujer.
 - [x] Ruta Gym activa.
-- [x] Catálogo de productos.
+- [x] Catálogo con 12 productos activos.
+- [x] Identificadores de productos mediante slugs.
+- [x] Modelo de productos normalizado.
 - [x] Tarjetas reutilizables.
 - [x] Página de detalle de producto.
 - [x] Selección de color y talla.
 - [x] Carrito de compras.
 - [x] Modificación de cantidades.
+- [x] Eliminación de productos del carrito.
 - [x] Cálculo del total.
 - [x] Persistencia del carrito con LocalStorage.
+- [x] Recuperación del carrito al iniciar la aplicación.
 - [x] Contador dinámico del carrito.
 - [x] Pedidos mediante WhatsApp.
 - [x] Búsqueda de productos.
 - [x] Página de favoritos.
 - [x] Agregar y quitar favoritos.
 - [x] Persistencia de favoritos con LocalStorage.
+- [x] Recuperación de favoritos al iniciar la aplicación.
 - [x] Contador dinámico de favoritos.
 - [x] Navbar con acceso a favoritos.
 - [x] Contadores independientes para carrito y favoritos.
 - [x] Agregar productos al carrito directamente desde favoritos.
 - [x] Selección inline de color y talla desde favoritos.
 - [x] Reutilización de `CartContext` para agregar productos desde diferentes páginas.
+- [x] Pruebas funcionales de catálogo, navegación, carrito, favoritos, búsqueda y persistencia.
 
 ### Mejoras y funcionalidades pendientes
 

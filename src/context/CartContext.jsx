@@ -1,31 +1,33 @@
-
-import {
-    createContext,
-    useContext,
-    useEffect,
-    useMemo,
-    useState
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const CartContext = createContext();
-
 const CART_STORAGE_KEY = "conquer-cart";
 
 export function CartProvider({ children }) {
 
-    // Recuperar el carrito guardado al iniciar la aplicación
+    // Recuperar el carrito guardado al iniciar la aplicación.
     const [cartItems, setCartItems] = useState(() => {
         try {
             const savedCart = localStorage.getItem(CART_STORAGE_KEY);
 
-            return savedCart ? JSON.parse(savedCart) : [];
+            // Si hay información guardada, recuperarla.
+            if (savedCart) {
+                const parsedCart = JSON.parse(savedCart);
+
+                // Comprobar que los datos sean un arreglo.
+                if (Array.isArray(parsedCart)) {
+                    return parsedCart;
+                }
+            }
+
+            return [];
         } catch (error) {
             console.error("Error al recuperar el carrito:", error);
             return [];
         }
     });
 
-    // Guardar automáticamente cada cambio del carrito
+    // Guardar automáticamente cada cambio del carrito.
     useEffect(() => {
         try {
             localStorage.setItem(
@@ -37,7 +39,8 @@ export function CartProvider({ children }) {
         }
     }, [cartItems]);
 
-    const addToCart = (product, color, size) => {
+    // Agregar un producto al carrito.
+    const addToCart = (product, color = "", size = "") => {
 
         const existingItem = cartItems.find(
             (item) =>
@@ -46,12 +49,13 @@ export function CartProvider({ children }) {
                 item.size === size
         );
 
+        // Si ya existe la misma combinación, aumentar cantidad.
         if (existingItem) {
             setCartItems((prev) =>
                 prev.map((item) =>
                     item.productId === product.id &&
-                        item.color === color &&
-                        item.size === size
+                    item.color === color &&
+                    item.size === size
                         ? {
                             ...item,
                             quantity: item.quantity + 1
@@ -59,10 +63,10 @@ export function CartProvider({ children }) {
                         : item
                 )
             );
-
             return;
         }
 
+        // Crear un nuevo elemento para el carrito.
         const newItem = {
             productId: product.id,
             name: product.name,
@@ -76,17 +80,13 @@ export function CartProvider({ children }) {
         setCartItems((prev) => [...prev, newItem]);
     };
 
-    const increaseQuantity = (
-        productId,
-        color,
-        size
-    ) => {
-
+    // Aumentar la cantidad de un producto.
+    const increaseQuantity = (productId, color, size) => {
         setCartItems((prev) =>
             prev.map((item) =>
                 item.productId === productId &&
-                    item.color === color &&
-                    item.size === size
+                item.color === color &&
+                item.size === size
                     ? {
                         ...item,
                         quantity: item.quantity + 1
@@ -96,18 +96,14 @@ export function CartProvider({ children }) {
         );
     };
 
-    const decreaseQuantity = (
-        productId,
-        color,
-        size
-    ) => {
-
+    // Disminuir la cantidad de un producto.
+    const decreaseQuantity = (productId, color, size) => {
         setCartItems((prev) =>
             prev
                 .map((item) =>
                     item.productId === productId &&
-                        item.color === color &&
-                        item.size === size
+                    item.color === color &&
+                    item.size === size
                         ? {
                             ...item,
                             quantity: item.quantity - 1
@@ -118,12 +114,8 @@ export function CartProvider({ children }) {
         );
     };
 
-    const removeFromCart = (
-        productId,
-        color,
-        size
-    ) => {
-
+    // Eliminar un producto del carrito.
+    const removeFromCart = (productId, color, size) => {
         setCartItems((prev) =>
             prev.filter(
                 (item) =>
@@ -136,11 +128,10 @@ export function CartProvider({ children }) {
         );
     };
 
-    // Calcular el total automáticamente
+    // Calcular el total del carrito.
     const total = useMemo(() => {
         return cartItems.reduce(
-            (acc, item) =>
-                acc + item.price * item.quantity,
+            (acc, item) => acc + item.price * item.quantity,
             0
         );
     }, [cartItems]);

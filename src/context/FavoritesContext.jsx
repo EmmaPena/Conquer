@@ -4,19 +4,29 @@ const FavoritesContext = createContext();
 const STORAGE_KEY = "conquer-favorites";
 
 export function FavoritesProvider({ children }) {
-    // Recuperar favoritos guardados
+
+    // Recuperar los favoritos guardados al iniciar la aplicación.
     const [favoriteIds, setFavoriteIds] = useState(() => {
         try {
             const savedFavorites = localStorage.getItem(STORAGE_KEY);
 
-            return savedFavorites ? JSON.parse(savedFavorites) : [];
+            if (savedFavorites) {
+                const parsedFavorites = JSON.parse(savedFavorites);
+                
+                // Comprobar que los datos sean un arreglo.
+                if (Array.isArray(parsedFavorites)) {
+                    return parsedFavorites;
+                }
+            }
+
+            return [];
         } catch (error) {
             console.error("Error al recuperar favoritos:", error);
             return [];
         }
     });
 
-    // Guardar favoritos automáticamente
+    // Guardar favoritos automáticamente.
     useEffect(() => {
         try {
             localStorage.setItem(
@@ -28,12 +38,12 @@ export function FavoritesProvider({ children }) {
         }
     }, [favoriteIds]);
 
-    // Comprobar si un producto es favorito
+    // Comprobar si un producto es favorito.
     const isFavorite = (productId) => {
         return favoriteIds.includes(productId);
     };
 
-    // Agregar un producto
+    // Agregar un producto a favoritos.
     const addFavorite = (productId) => {
         setFavoriteIds((prev) => {
             if (prev.includes(productId)) return prev;
@@ -42,14 +52,14 @@ export function FavoritesProvider({ children }) {
         });
     };
 
-    // Eliminar un producto
+    // Eliminar un producto de favoritos.
     const removeFavorite = (productId) => {
         setFavoriteIds((prev) =>
             prev.filter((id) => id !== productId)
         );
     };
 
-    // Alternar entre agregar y eliminar
+    // Alternar entre agregar y eliminar.
     const toggleFavorite = (productId) => {
         setFavoriteIds((prev) =>
             prev.includes(productId)
@@ -58,7 +68,7 @@ export function FavoritesProvider({ children }) {
         );
     };
 
-    // Eliminar todos los favoritos
+    // Eliminar todos los favoritos.
     const clearFavorites = () => {
         setFavoriteIds([]);
     };
@@ -70,7 +80,7 @@ export function FavoritesProvider({ children }) {
         addFavorite,
         removeFavorite,
         toggleFavorite,
-        clearFavorites,
+        clearFavorites
     };
 
     return (
@@ -82,12 +92,10 @@ export function FavoritesProvider({ children }) {
 
 export function useFavorites() {
     const context = useContext(FavoritesContext);
-
     if (!context) {
         throw new Error(
             "useFavorites debe utilizarse dentro de FavoritesProvider"
         );
     }
-
     return context;
 }

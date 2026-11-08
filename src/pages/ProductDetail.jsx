@@ -5,14 +5,23 @@ import "../css/ProductDetail.css";
 import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
+
     const { id } = useParams();
-    const product = products.find(
-        (p) => p.id === Number(id)
+    // Buscar el producto utilizando su ID de texto.
+    const product = products.find((p) => p.id === id);
+
+    const [selectedColor, setSelectedColor] = useState(
+        product?.colors?.[0] || ""
     );
 
-    const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || "");
-    const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
-    const [activeImage, setActiveImage] = useState(product?.images?.[0] || "");
+    const [selectedSize, setSelectedSize] = useState(
+        product?.sizes?.[0] || ""
+    );
+
+    const [activeImage, setActiveImage] = useState(
+        product?.images?.[0] || ""
+    );
+
     const { addToCart } = useCart();
 
     if (!product) {
@@ -23,9 +32,33 @@ export default function ProductDetail() {
         );
     }
 
+    // Agregar producto al carrito.
+    const handleAddToCart = () => {
+
+        // Validar color solamente si el producto tiene colores.
+        if (product.colors?.length > 0 && !selectedColor) {
+            alert("SELECCIONA UN COLOR");
+            return;
+        }
+
+        // Validar talla solamente si el producto tiene tallas.
+        if (product.sizes?.length > 0 && !selectedSize) {
+            alert("SELECCIONA UNA TALLA");
+            return;
+        }
+
+        addToCart(
+            product,
+            selectedColor,
+            selectedSize
+        );
+    };
+
     return (
         <main className="product-detail">
+
             <section className="product-gallery">
+
                 <img
                     src={activeImage}
                     alt={product.name}
@@ -43,9 +76,7 @@ export default function ProductDetail() {
                                     ? "thumbnail active"
                                     : "thumbnail"
                             }
-                            onClick={() =>
-                                setActiveImage(image)
-                            }
+                            onClick={() => setActiveImage(image)}
                         />
                     ))}
                 </div>
@@ -53,16 +84,18 @@ export default function ProductDetail() {
 
             <section className="product-content">
                 <h1>{product.name}</h1>
+
                 <p className="price">
                     ${product.price}
                 </p>
-                <p className="description">
-                    {product.description}
-                </p>
+
                 {product.colors?.length > 0 && (
                     <div className="product-colors">
+
                         <h3>COLORES</h3>
+
                         <div className="options-container">
+
                             {product.colors.map((color) => (
                                 <button
                                     key={color}
@@ -71,9 +104,7 @@ export default function ProductDetail() {
                                             ? "color-btn active"
                                             : "color-btn"
                                     }
-                                    onClick={() =>
-                                        setSelectedColor(color)
-                                    }
+                                    onClick={() => setSelectedColor(color)}
                                 >
                                     {color}
                                 </button>
@@ -84,8 +115,11 @@ export default function ProductDetail() {
 
                 {product.sizes?.length > 0 && (
                     <div className="product-sizes">
+
                         <h3>TALLAS</h3>
+
                         <div className="options-container">
+
                             {product.sizes.map((size) => (
                                 <button
                                     key={size}
@@ -94,9 +128,7 @@ export default function ProductDetail() {
                                             ? "size-btn active"
                                             : "size-btn"
                                     }
-                                    onClick={() =>
-                                        setSelectedSize(size)
-                                    }
+                                    onClick={() => setSelectedSize(size)}
                                 >
                                     {size}
                                 </button>
@@ -106,37 +138,32 @@ export default function ProductDetail() {
                 )}
 
                 <div className="selection-preview">
-                    <p>
-                        <strong>COLOR:</strong>{" "}
-                        {selectedColor}
-                    </p>
-                    <p>
-                        <strong>TALLA:</strong>{" "}
-                        {selectedSize}
-                    </p>
+
+                    {product.colors?.length > 0 && (
+                        <p>
+                            <strong>COLOR:</strong>{" "}
+                            {selectedColor}
+                        </p>
+                    )}
+
+                    {product.sizes?.length > 0 && (
+                        <p>
+                            <strong>TALLA:</strong>{" "}
+                            {selectedSize}
+                        </p>
+                    )}
+
                 </div>
 
                 <button
                     className="add-cart-btn"
-                    onClick={() => {
-
-                        if (!selectedColor || !selectedSize) {
-                            alert("SELECCIONA COLOR Y TALLA");
-                            return;
-                        }
-
-                        addToCart(
-                            product,
-                            selectedColor,
-                            selectedSize
-                        );
-
-                        //alert("PRODUCTO AGREGADO AL CARRITO");
-                    }}
+                    onClick={handleAddToCart}
                 >
                     Agregar a mi bolsa
                 </button>
+
             </section>
+
         </main>
     );
 }
